@@ -73,17 +73,19 @@
                             </div>
                             @if (Session["idUser"] != null)
                             {
-                <a href="~/Admin/HomeAdmin/Index">Admin</a>
-                                <a href="~/Home/Logout">Logout</a> }
-                                            else
-                                            {
-                                <a class="btn btn-warning" href="~/Home/Login">Login</a>}
+                                        <a href="~/Admin/HomeAdmin/Index">Admin</a>
+                                        <a href="~/Home/Logout">Logout</a> 
+                            }
+                            else
+                            {
+                                        <a class="btn btn-warning" href="~/Home/Login">Login</a>
+                                        <a href="~/Home/Register" class="widget-view">
+                                        <i class="btn btn-warning">Sign up</i></a>
+                            }
                             @*<small class="text"> My profile </small>*@
                         </a>
                     </div>
-                        <a href="~/Home/Register" class="widget-view">
-                            <i class="btn btn-warning">Sign up</i>                       
-                        </a>
+                        
              
                     <div class="widget-header mr-3">
                         <a href="#" class="widget-view">

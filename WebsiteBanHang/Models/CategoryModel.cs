@@ -8,6 +8,7 @@ namespace WebsiteBanHang.Models
 {
     public class CategoryModel
     {
+        public int Id { get; set; }
         public List<C2119110263_Product> ListProduct { get; set; }
 
         public List<C2119110263_Category> ListCategory { get; set; }

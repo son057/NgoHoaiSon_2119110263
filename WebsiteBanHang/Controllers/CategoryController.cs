@@ -20,10 +20,15 @@ namespace WebsiteBanHang.Controllers
 
         public ActionResult ProductCategory(int Id)
         {
+            CategoryModel objCategoryModel = new CategoryModel();
             var lstProduct = objWebsiteBanHangEntities.C2119110263_Product.Where(n => n.CategoryId == Id).ToList();
             var lstCategory = objWebsiteBanHangEntities.C2119110263_Category.ToList();
             var lstBrand = objWebsiteBanHangEntities.C2119110263_Brand.ToList();
-            return View(lstProduct);
+            objCategoryModel.Id = Id;
+            objCategoryModel.ListProduct = lstProduct;
+            objCategoryModel.ListCategory = lstCategory;
+            objCategoryModel.ListBrand = lstBrand;
+            return View(objCategoryModel);
         }
 
         public ActionResult ProductCategoryList(int Id)
