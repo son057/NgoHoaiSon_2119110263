@@ -44,11 +44,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FullDescription)
+            @Html.DisplayNameFor(model => model.FullDes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FullDescription)
+            @Html.DisplayFor(model => model.FullDes)
         </dd>
 
         <dt>
@@ -137,7 +137,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input class="btn-danger" type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

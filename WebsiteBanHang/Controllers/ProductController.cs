@@ -9,12 +9,25 @@ namespace WebsiteBanHang.Controllers
 {
     public class ProductController : Controller
     {
-        WebsiteBanHangEntities1 objWebsiteBanHangEntities = new WebsiteBanHangEntities1();
+        WebsiteBanHangEntities2 objWebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         // GET: Product
         public ActionResult Detail(int Id)
         {
-            var objProduct = objWebsiteBanHangEntities.C2119110263_Product.Where(n => n.Id == Id).FirstOrDefault();
+            var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Id == Id).FirstOrDefault();
             return View(objProduct);
         }
+
+        public ActionResult AllProduct(string SearchString = "", int Id=0)
+        {
+            var lstProduct = new List<C2119110263_Product>();
+            if (SearchString != "")
+            {
+                var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Id == Id).FirstOrDefault();
+                lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString)).ToList();
+                return View(lstProduct);
+            }
+                var listProduct = objWebsiteBanHangEntities1.C2119110263_Product.ToList();
+            return View(listProduct);
+        }    
     }
 }

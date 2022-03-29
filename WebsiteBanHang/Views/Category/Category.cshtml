@@ -19,19 +19,19 @@
                     <div class="card card-category">
                         <div class="img-wrap" style="background: #ffd7d7">
                             <img src="~/Content/images/category/@item.Avartar">
-                            <h4 class="card-title"><a href="#">Summer shirts</a></h4>
-                            <ul class="list-menu">
-                                <li><a href="">Unisex T shirts</a></li>
-                                <li><a href="">Casual shirts</a></li>
-                                <li><a href="">Scherf Ice cream</a></li>
-                                <li><a href="">Another category</a></li>
-                                <li><a href="">Great items name</a></li>
-                                <li><a href="">Great items name</a></li>
-                            </ul>
+
                         </div>
                         <div class="card-body">
                             <h4 class="card-title"><a href="@Url.Action("ProductCategory", "Category", new { Id = item.Id })">@item.Name</a></h4>
-                            
+                            <ul class="list-menu">
+                                <li><a href="">@item.Name</a></li>
+                                <li><a href="">@item.Name</a></li>
+                                <li><a href="">@item.Name</a></li>
+                                <li><a href="">@item.Name</a></li>
+                                <li><a href="">@item.Name</a></li>
+                                <li><a href="">@item.Name</a></li>
+                            </ul>
+                            <h4 class="card-title"><a href="#">@item.Name</a></h4>
                         </div>
                     </div>
                 </div> <!-- col.// -->

@@ -95,11 +95,11 @@
                     <option>Cheapest</option>
                 </select>
                 <div class="btn-group">
-                    <a href="@Url.Action("ProductCategoryList", "Category",new {Id = Model.FirstOrDefault().CategoryId })" class="btn btn-light" data-toggle="tooltip" title="List view">
+                    <a href="@Url.Action("ProductCategory", "Category",new {Id = Model.FirstOrDefault().CategoryId })" class="btn btn-light" data-toggle="tooltip" title="List view">
 
                         <i class="fa fa-bars"></i>
                     </a>
-                    <a href="@Url.Action("ProductCategory", "Category",new {Id = Model.FirstOrDefault().CategoryId })" class="btn btn-light" data-toggle="tooltip" title="Grid view">
+                    <a href="@Url.Action("ProductCategoryList", "Category",new {Id = Model.FirstOrDefault().CategoryId })" class="btn btn-light" data-toggle="tooltip" title="Grid view">
                         <i class="fa fa-th"></i>
                     </a>
                 </div>
@@ -116,7 +116,7 @@
                             <img src="~/Content/images/items/@item.Avatar">
                         </div> <!-- img-wrap.// -->
                         <figcaption class="info-wrap">
-                            <a href="#" class="title mb-2">@item.Name</a>
+                            <a href="@Url.Action("Detail", "Product", new { Id = item.Id })" class="title mb-2">@item.Name</a>
                             <div class="price-wrap">
                                 <span class="price">@item.Price VND</span>
                                 <small class="text-muted">/per item</small>

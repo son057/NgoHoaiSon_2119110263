@@ -43,7 +43,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="@Url.Action("Index", "HomeAdmin")" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -208,7 +208,34 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Product")" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Quản lý sản phẩm
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="pages/gallery.html" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Quản Lý Danh Mục
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="pages/gallery.html" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Quản Lý Bài Viết
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -846,11 +873,12 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-        @RenderBody()
-        
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
         <footer class="main-footer">
             <strong>Trang Quản Trị <a href="https://adminlte.io">BookStore</a></strong>
-            
+
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.1.0
             </div>
@@ -889,12 +917,13 @@
     <script src="~/Content/admin/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="~/Content/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    
+
     <!-- AdminLTE App -->
     <script src="~/Content/admin/dist/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/Content/admin/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/Content/admin/dist/js/pages/dashboard.js"></script>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 </body>
 </html>

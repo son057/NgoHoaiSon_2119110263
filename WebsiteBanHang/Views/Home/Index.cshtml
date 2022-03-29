@@ -1,4 +1,6 @@
-﻿@model WebsiteBanHang.Models.HomeModel
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model WebsiteBanHang.Models.HomeModel
 
 
 @{
@@ -64,7 +66,7 @@
                     <div class="col-md d-none d-lg-block flex-grow-1">
                         <aside class="special-home-right">
                             <h6 class="bg-blue text-center text-white mb-0 p-2">Danh mục phổ biến</h6>
-                            @foreach (var item in Model.ListCategory.Where(n=>n.ShowOnHomePage==true).Take(3))
+                            @foreach (var item in Model.ListCategory.Where(n => n.ShowOnHomePage == true).Take(3))
                             {
                                 <div class="card-banner border-bottom">
                                     <div class="py-3" style="width:80%">
@@ -100,7 +102,7 @@
                 </div>
             </div> <!-- col.// -->
             <div class="row no-gutters items-wrap">
-                @foreach (var item in Model.ListProduct.Where(n=>n.TypeId == 1).Take(5))
+                @foreach (var item in Model.ListProduct.Where(n => n.TypeId == 1).Take(5))
                 {
                     <div class="col-md col-6">
                         <figure class="card-product-grid card-sm">
@@ -109,7 +111,7 @@
                             </a>
                             <div class="text-wrap p-3">
                                 @*<a href="#" class="title">@item.name</a>*@
-                                @Html.ActionLink(item.Name,"Detail", "Product", new { Id = item.Id },null)
+                                @Html.ActionLink(item.Name, "Detail", "Product", new { Id = item.Id }, null)
                                 <span class="badge badge-danger"> -20% </span>
                             </div>
                         </figure>
@@ -133,8 +135,8 @@
                 <div class="col-md-3">
 
                     <div class="home-category-banner bg-light-orange">
-                        <h5 class="title">Best trending clothes only for summer</h5>
-                        <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <h5 class="title"></h5>
+                        <p>Từ cuối năm 2008, với sự trưởng thành mạnh mẽ của tổ chức, Nhã Nam đã mở rộng sự quan tâm sang các mảng sách non-fiction như lịch sử, triết học, khoa học, sách về các vấn đề xã hội, văn hóa đương đại, sách khai trí, tham khảo, triết lý sống... Trong lĩnh vực này, Nhã Nam đã trở thành nhà xuất bản của những tác gia quan trọng trên thị trường xuất bản thế giới hiện nay: Đức Đạt Lai Lạt Ma, Deepak Chopra, Don Miguel Ruiz, Naomi Klein, Elisabeth Gilbert... Trong thời gian tới, công ty sẽ tiếp tục phát triển mạnh các mảng sách văn học mà lâu nay vẫn chưa được quan tâm đúng mức ở Việt Nam, như tiểu thuyết khoa học giả tưởng, văn chương kỳ ảo, truyện tranh thế hệ mới… Sự ra đời của các bộ sách lớn của J.R.R Tolkien hay Frank Herbert trong năm 2009 là một minh chứng cho điều đó.</p>
                         <a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
                         <img src="~/Content/images/items/nhanam.jpg" class="img-bg">
                     </div>
@@ -142,14 +144,14 @@
                 </div> <!-- col.// -->
                 <div class="col-md-9">
                     <ul class="row no-gutters bordered-cols">
-                        @foreach (var item in Model.ListProduct.Where(n=>n.BrandId == 1))
+                        @foreach (var item in Model.ListProduct.Where(n => n.BrandId == 1))
                         {
                             <li class="col-6 col-lg-3 col-md-4">
                                 <a href="@Url.Action("Detail", "Product", new { Id = item.Id })" class="item">
                                     <div class="card-body">
                                         <h6 class="title">@item.Name  </h6>
                                         <img class="img-sm float-right" src="~/Content/images/items/@item.Avatar">
-                                        
+
                                     </div>
                                 </a>
                             </li>
@@ -172,8 +174,8 @@
                 <div class="col-md-3">
 
                     <div class="home-category-banner bg-light-orange">
-                        <h5 class="title">Machinery items for manufacturers</h5>
-                        <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <h5 class="title"></h5>
+                        <p>Nhiều tác phẩm do NXB Trẻ xuất bản đã đoạt được các giải thưởng lớn như Giải thưởng Văn học ASEAN (Cơn giông – Lê Văn Thảo, Cánh đồng bất tận – Nguyễn Ngọc Tư, Cho tôi xin một vé đi tuổi thơ – Nguyễn Nhật Ánh), Giải thưởng Hội Nhà văn Việt Nam qua các năm (Một ngày và một đời – Lê Văn Thảo, Dũng Sài Gòn – Nguyễn Trí Công, Một chuyến đi xa – Đào Hiếu, Cánh đồng bất tận – Nguyễn Ngọc Tư, Cho tôi xin một vé đi tuổi thơ – Nguyễn Nhật Ánh…), Giải thưởng Peter Pan 2008 của Ủy ban quốc tế về sách dành cho thiếu nhi tại Thụy Điển (Vừa nhắm mắt vừa mở cửa sổ - Nguyễn Ngọc Thuần)… Các cuộc vận động sáng tác văn học lớn do Nxb Trẻ phối hợp báo Tuổi Trẻ, Hội Nhà văn TP.HCM tổ chức như: Giải thưởng Văn học tuổi 20 và Giải Văn học thiếu nhi Vì tương lai đất nước (phối hợp với Hội Nhà văn TP.HCM) đều tạo được uy tín lớn trong xã hội, góp phần phát hiện và nuôi dưỡng nhiều cây bút tài hoa như Nguyên Hương, Nguyễn Ngọc Tư, Nguyễn Ngọc Thuần, Phong Điệp, Phan Triều Hải…</p>
                         <a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
                         <img src="~/Content/images/items/14.png" class="img-bg">
                     </div>
@@ -181,14 +183,14 @@
                 </div> <!-- col.// -->
                 <div class="col-md-9">
                     <ul class="row no-gutters bordered-cols">
-                        @foreach (var item in Model.ListProduct.Where(n=>n.BrandId ==2))
+                        @foreach (var item in Model.ListProduct.Where(n => n.BrandId == 2))
                         {
                             <li class="col-6 col-lg-3 col-md-4">
                                 <a href="@Url.Action("Detail", "Product", new { Id = item.Id })" class="item">
                                     <div class="card-body">
                                         <h6 class="title">@item.Name </h6>
                                         <img class="img-sm float-right" src="~/Content/images/items/@item.Avatar">
-                                        
+
                                     </div>
                                 </a>
                             </li>
@@ -271,7 +273,7 @@
 
         <div class="row row-sm">
 
-            @foreach (var item in Model.ListProduct.Where(n=>n.TypeId == 2).Take(12))
+            @foreach (var item in Model.ListProduct.Where(n => n.TypeId == 2).Take(12))
             {
                 <div class="col-xl-2 col-lg-3 col-md-4 col-6">
                     <div class="card card-sm card-product-grid">
@@ -284,6 +286,17 @@
                 </div> <!-- col.// -->
             }
         </div> <!-- row.// -->
+        @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, currentFilter = ViewBag.CurrentFilter }))*@
+        <!-- Thêm mã phân trang -->
+        @*<br />
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page }))*@
+        <!-- Kết thúc -->
     </section>
     <!-- =============== SECTION ITEMS .//END =============== -->
     <!-- =============== SECTION SERVICES =============== -->

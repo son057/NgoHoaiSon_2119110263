@@ -1,8 +1,6 @@
 ﻿@model WebsiteBanHang.Models.CategoryModel
 
 
-
-
 @{
     ViewBag.Title = "ProductCategory";
 }
@@ -16,8 +14,8 @@
         <div class="card mb-3">
             <div class="card-body">
                 <ol class="breadcrumb float-left">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Category name</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Category", "Category")">Category name</a></li>
                     <li class="breadcrumb-item active">Item details</li>
                 </ol>
             </div> <!-- card-body .// -->
@@ -37,7 +35,7 @@
                             <ul class="list-menu">
                                 @foreach (var item in Model.ListCategory)
                                 {
-                                    <li><a href="#">@item.Name  </a></li>
+                                    <li><a href="@Url.Action("ProductCategory", "Category", new { Id = item.Id })">@item.Name  </a></li>
                                 }
 
 
@@ -52,13 +50,14 @@
                     <div class="filter-content collapse show" id="collapse_2">
                         <div class="inner">
                         @* Brand *@
+
                             @foreach (var item in Model.ListBrand)
                             {
                                 <label class="custom-control custom-checkbox">
                                     <input type="checkbox" checked="" class="custom-control-input">
                                     <div class="custom-control-label">
-                                        @item.Name 
-                                        <b class="badge badge-pill badge-light float-right">120</b>
+                                        <a href="@Url.Action("ProductBrand", "Brand", new { Id = item.Id })">@item.Name  </a>
+                                        <b class="badge badge-pill badge-light float-right">@Model.ListProduct.Count()</b>
                                     </div>
                                 </label>
                             }
@@ -239,9 +238,6 @@
                         </div> <!-- row.// -->
                     </article> <!-- card-product .// -->
                 }
-
-
-
 
                 <nav class="mb-4" aria-label="Page navigation sample">
                     <ul class="pagination">
