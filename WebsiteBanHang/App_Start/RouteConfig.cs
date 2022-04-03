@@ -19,6 +19,13 @@ namespace WebsiteBanHang
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 new[] { "WebsiteBanHang.Controllers" }
             );
+
+            routes.MapRoute(
+               name: "Contact",
+               url: "lien-he",
+               defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+               namespaces: new[] { "WebsiteBanHang.Controllers" }
+           );
         }
     }
 }

@@ -16,34 +16,34 @@
                     <div class="col-md-2"> Your are here: </div> <!-- col.// -->
                     <nav class="col-md-8">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                            <li class="breadcrumb-item"><a href="@Url.Action("ProductBrand", "Brand")">Brand name</a></li>
-                            <li class="breadcrumb-item"><a href="@Url.Action("ProductBrand", "Brand")">Sub brand</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Items</li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang Chủ</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("ProductBrand", "Brand")">Tên Thương Hiệu</a></li>
+                            @*<li class="breadcrumb-item"><a href="@Url.Action("ProductBrand", "Brand")">Sub brand</a></li>*@
+                            <li class="breadcrumb-item active" aria-current="page">Sản Phẩm</li>
                         </ol>
                     </nav> <!-- col.// -->
                 </div> <!-- row.// -->
                 <hr>
                 <div class="row">
-                    <div class="col-md-2">Filter by</div> <!-- col.// -->
+                    <div class="col-md-2">Lọc</div> <!-- col.// -->
                     <div class="col-md-10">
                         <ul class="list-inline">
                             <li class="list-inline-item mr-3 dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">   Supplier type </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">   Kiểu lọc </a>
                                 <div class="dropdown-menu p-3" style="max-width:400px;">
                                     <label class="form-check">
-                                        <input type="radio" name="myfilter" class="form-check-input"> Good supplier
+                                        <input type="radio" name="myfilter" class="form-check-input"> Sản phẩm được đánh giá cao
                                     </label>
                                     <label class="form-check">
-                                        <input type="radio" name="myfilter" class="form-check-input"> Best supplier
+                                        <input type="radio" name="myfilter" class="form-check-input"> Sản phẩm bán chạy nhất
                                     </label>
                                     <label class="form-check">
-                                        <input type="radio" name="myfilter" class="form-check-input"> New supplier
+                                        <input type="radio" name="myfilter" class="form-check-input"> Sản phẩm mới nhất
                                     </label>
                                 </div> <!-- dropdown-menu.// -->
                             </li>
                             <li class="list-inline-item mr-3 dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">  Country </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">  Quốc Gia </a>
                                 <div class="dropdown-menu p-3">
                                     <label class="form-check"> 	 <input type="checkbox" class="form-check-input"> China    </label>
                                     <label class="form-check">   	 <input type="checkbox" class="form-check-input"> Japan      </label>
@@ -59,8 +59,8 @@
                                     <a href="" class="dropdown-item">Extra safety</a>
                                 </div>
                             </li>
-                            <li class="list-inline-item mr-3"><a href="#">Color</a></li>
-                            <li class="list-inline-item mr-3"><a href="#">Size</a></li>
+                            <li class="list-inline-item mr-3"><a href="#">Màu</a></li>
+                            <li class="list-inline-item mr-3"><a href="#">Kích thước</a></li>
                             <li class="list-inline-item mr-3">
                                 <div class="form-inline">
                                     <label class="mr-2">Price</label>
@@ -94,14 +94,14 @@
                     <option>Most Popular</option>
                     <option>Cheapest</option>
                 </select>
-                <div class="btn-group">
+                @*<div class="btn-group">
                     <a href="page-listing-grid.html" class="btn btn-light active" data-toggle="tooltip" title="List view">
                         <i class="fa fa-bars"></i>
                     </a>
                     <a href="page-listing-large.html" class="btn btn-light" data-toggle="tooltip" title="Grid view">
                         <i class="fa fa-th"></i>
                     </a>
-                </div>
+                </div>*@
             </div>
         </header><!-- sect-heading -->
 

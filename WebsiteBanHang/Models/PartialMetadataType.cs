@@ -19,7 +19,32 @@ namespace WebsiteBanHang.Context
 
     [MetadataType(typeof(ProductMasterData))]
 
-    public partial class Product
+    public partial class C2119110263_Product
+    {
+        [NotMapped]
+
+        public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
+
+        internal static object Include(Func<object, object> p)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    [MetadataType(typeof(CategoryMasterData))]
+
+    public partial class C2119110263_Category
+    {
+        [NotMapped]
+
+        public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
+    }
+
+
+    [MetadataType(typeof(BrandMasterData))]
+
+    public partial class C2119110263_Brand
     {
         [NotMapped]
 

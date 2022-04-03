@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebsiteBanHang.Context.C2119110263_Brand>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="card-body">
+    <table id="example2" class="table table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avatar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowOnHomePage)
+            </th>
+            <th></th>
+        </tr>
+
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img style="width:8em" src="~/Content/images/brand/@item.Avatar" alt="Alternate Text" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShowOnHomePage)
+                </td>
+                
+
+
+                <td>
+                    <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "Brand", new { id = item.Id })> <i class="fas fa-edit"></i></a>
+                    <a class="btn btn-danger mx-1" href=@Url.Action("Details", "Brand", new { id = item.Id })> <i class="fa fa-info"></i></a>
+                    <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "Brand", new { id = item.Id })><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

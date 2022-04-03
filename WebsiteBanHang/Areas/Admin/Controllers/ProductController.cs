@@ -6,10 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebsiteBanHang.Context;
 using static WebsiteBanHang.Common;
 using PagedList;
 using PagedList.Mvc;
+using WebsiteBanHang.Context;
 
 namespace WebsiteBanHang.Areas.Admin.Controllers
 {
@@ -20,6 +20,9 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index(string currentFilter, string SearchString, int? page)
         {
+
+            
+
             var lstProduct = new List<C2119110263_Product>();
             if (SearchString !=null)
             {
@@ -37,7 +40,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             else
             {
                 //lấy all sản phẩm trong bảng product
-                lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.ToList();
+                lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where( n=> n.Deleted == false).ToList();
             }
             ViewBag.CurrentFilter = SearchString;
             int pageSize = 10;
@@ -106,7 +109,9 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         public ActionResult Delete(C2119110263_Product objPro)
         {
             var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Id == objPro.Id).FirstOrDefault();
-            objWebsiteBanHangEntities1.C2119110263_Product.Remove(objProduct);
+            //objWebsiteBanHangEntities1.C2119110263_Product.Remove(objProduct);
+            objProduct.Deleted = true;
+            //objWebsiteBanHangEntities1.C2119110263_Product.Remove(objProduct);
             objWebsiteBanHangEntities1.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -168,5 +173,54 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
 
             ViewBag.ProductType = objCommon.ToSelectList(dtProductType, "Id", "Name");
         }
+
+        [HttpGet]
+        public ActionResult Trash()
+        {
+            var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Deleted == true).ToList();
+            return View(objProduct);
+        }
+
+        [HttpGet]
+        public ActionResult Recover(C2119110263_Product objPro)
+        {
+            var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Id == objPro.Id).FirstOrDefault();
+            //objWebsiteBanHangEntities1.C2119110263_Product.Remove(objProduct);
+            objProduct.Deleted = false;
+            //objWebsiteBanHangEntities1.C2119110263_Product.Remove(objProduct);
+            objWebsiteBanHangEntities1.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteTrash(int id)
+        {
+            var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Id == id).FirstOrDefault();
+            return View(objProduct);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTrash(C2119110263_Product objPro)
+        {
+            var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Id == objPro.Id).FirstOrDefault();
+            //objWebsiteBanHangEntities1.C2119110263_Product.Remove(objProduct);
+            objWebsiteBanHangEntities1.C2119110263_Product.Remove(objProduct);
+            //objWebsiteBanHangEntities1.C2119110263_Product.Remove(objProduct);
+            objWebsiteBanHangEntities1.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        //public ActionResult DelTrash(C2119110263_Product objProduct,int?id)
+        //{
+        //    if(id == null)
+        //    {
+        //        return RedirectToAction("Index", "Product");
+        //    }
+        //    objProduct.Deleted = 1;//trạng thái rác = 0
+        //    //objProduct.UpdatedOnUtc = Convert.ToInt32(objProduct.UpdatedOnUtc.ToString());
+        //    objProduct.CreatedOnUtc = DateTime.Now;
+        //    return RedirectToAction("Index", "Product");
+        //}
     }
 }

@@ -8,7 +8,7 @@ namespace WebsiteBanHang.Models
 {
     public class UserMasterData
     {
-        [Required]
+       
 
         public int Id { get; set; }
         [Required]

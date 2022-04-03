@@ -1,6 +1,7 @@
 ﻿@model WebsiteBanHang.Models.CategoryModel
 
 
+
 @{
     ViewBag.Title = "ProductCategory";
 }
@@ -14,9 +15,9 @@
         <div class="card mb-3">
             <div class="card-body">
                 <ol class="breadcrumb float-left">
-                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li class="breadcrumb-item"><a href="@Url.Action("Category", "Category")">Category name</a></li>
-                    <li class="breadcrumb-item active">Item details</li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang Chủ</a></li>
+                    <li class="breadcrumb-item"><a href="@Url.Action("Category", "Category")">Tên loại sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Sản phẩm</li>
                 </ol>
             </div> <!-- card-body .// -->
         </div> <!-- card.// -->
@@ -238,6 +239,11 @@
                         </div> <!-- row.// -->
                     </article> <!-- card-product .// -->
                 }
+
+                @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("AllProduct",
+                    new { page, currentFilter = ViewBag.CurrentFilter }))*@
 
                 <nav class="mb-4" aria-label="Page navigation sample">
                     <ul class="pagination">

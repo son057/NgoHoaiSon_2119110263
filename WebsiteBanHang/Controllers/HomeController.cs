@@ -25,7 +25,7 @@ namespace WebsiteBanHang.Controllers
             HomeModel objHomeModel = new HomeModel();
             if (SearchString !="")
             {
-                objHomeModel.ListProduct = objwebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString)).ToList();
+                objHomeModel.ListProduct = objwebsiteBanHangEntities1.C2119110263_Product.Where(n => n.NameUnsigned.Contains(SearchString)).ToList();
                 objHomeModel.ListCategory = objwebsiteBanHangEntities1.C2119110263_Category.ToList();
                 objHomeModel.ListBrand = objwebsiteBanHangEntities1.C2119110263_Brand.ToList();
                 return View(objHomeModel);

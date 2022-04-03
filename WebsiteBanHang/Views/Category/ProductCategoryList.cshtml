@@ -1,8 +1,247 @@
-﻿@model List<WebsiteBanHang.Context.C2119110263_Product>
+﻿@model PagedList.IPagedList<WebsiteBanHang.Context.C2119110263_Product>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "ProductCategoryList";
 }
+
+
+<style>
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        boder-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                margin-left: -1px;
+                line-height: 1.428571429;
+                text-decoration: none;
+                background-color: #ffffff;
+                border: 1px solid #dddddd;
+            }
+
+            .pagination > li:first-child > a,
+            .pagination > li:first-child > span {
+                margin-left: 0;
+                border-bottom-left-radius: 4px;
+                border-top-left-radius: 4px;
+            }
+
+            .pagination > li:last-child > a,
+            .pagination > li:last-child > span {
+                border-bottom-right-radius: 4px;
+                border-top-right-radius: 4px;
+            }
+
+            .pagination > li > a.hover,
+            .pagination > li > span.hover,
+            .pagination > li > a.focus,
+            .pagination > li > span:focus {
+                background-color: #eeeeee;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a.hover,
+        .pagination > .active > span.focus,
+        .pagination > .active > a.focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #ffffff;
+            cursor: default;
+            background-color: #428bca;
+            border-color: #428bca;
+        }
+
+
+        .pagination > .disabled > span,
+        .pagination > .disabled > a,
+        .pagination > .disabled > a.hover,
+        .pagination > .disabled > a.focus {
+            color: #999999;
+            cursor: not-allowed;
+            background-color: #ffffff;
+            border-color: #dddddd;
+        }
+
+    .pagination-lg > li > a,
+    .pagination-lg > li > span {
+        padding: 10px 16px;
+        font-size: 18px;
+    }
+
+    <style >
+    button, input, optgroup, select, textarea {
+        border: 2px #00ff21 solid;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px;
+        border-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 20px;
+                line-height: 1.428571429;
+                text-decoration: none;
+                background-color: #ffffff;
+                border: 1px solid #00ff21;
+                color: #00ff21;
+            }
+
+            .pagination > li:first-child > a,
+            .pagination > li:first-child > span {
+                margin-left: 0;
+                border-bottom-left-radius: 4px;
+                border-top-left-radius: 4px;
+            }
+
+            .pagination > li:last-child > a,
+            .pagination > li:last-child > span {
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+
+            .pagination > li > a:hover,
+            .pagination > li > span,
+            .pagination > li > a:focus,
+            .pagination > li > span:focus {
+                background-color: #eeeeee;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover;
+        .pagination > .active > a:focus;
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #ffffff;
+            cursor: default;
+            background-color: #428bca;
+            border-color: #428bca;
+        }
+
+        .pagination > .disabled > span,
+        .pagination > .disabled > a,
+        .pagination > .disabled > a:hover,
+        .pagination > .disabled > span:focus {
+            color: #999999;
+            cursor: not-allowed;
+            background-color: #ffffff;
+            border-color: #dddddd;
+        }
+
+    .pagination-lg > li > a,
+    .pagination-lg > li > span {
+        padding: 10px 16px;
+        font-size: 18px;
+    }
+
+    .pagination-lg > li:first-child > a,
+    .pagination-lg > li:first-child > span {
+        border-bottom-left-radius: 6px;
+        border-top-left-radius: 6px;
+    }
+
+    .pagination-lg > li:first-child > a,
+    .pagination-lg > li:first-child > span {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .pagination-sm > li > a,
+    .pagination-sm > li > span {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .pagination-sm > li:last-child > a,
+    .pagination-sm > li:last-child > span {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    .pager {
+        padding-left: 0;
+        margin: 20px;
+        text-align: center;
+        list-style: none;
+    }
+
+        .pager:before,
+        .pager:after {
+            display: table;
+            content: " ";
+        }
+
+        .pager::after {
+            clear: both;
+        }
+
+        .pager:before,
+        .pager:after {
+            display: table;
+            content: " ";
+        }
+
+        .pager:after {
+            clear: both;
+        }
+
+        .pager li {
+            display: inline;
+        }
+
+            .pager li > a,
+            .pager li > span {
+                display: inline-block;
+                padding: 5px 14px;
+                background-color: #ffffff;
+                border: 1px solid #dddddd;
+                border-radius: 15px;
+            }
+
+                .pager li > a:hover,
+                .pager li > a:focus {
+                    text-decoration: none;
+                    background-color: #eeeeee;
+                }
+
+        .pager .next > a,
+        .pager .next > span {
+            float: left;
+        }
+
+        .pager .disabled > a,
+        .pager .disabled > a:hover,
+        .pager .disabled > a:focus,
+        .pager .disabled > span {
+            color: #999999;
+            cursor: not-allowed;
+            background-color: #ffffff;
+        }
+</style>
 
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
@@ -16,34 +255,34 @@
                     <div class="col-md-2"> Your are here: </div> <!-- col.// -->
                     <nav class="col-md-8">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Category name</a></li>
-                            <li class="breadcrumb-item"><a href="#">Sub category</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Items</li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang Chủ</a></li>
+                            <li class="breadcrumb-item"><a href="@Url.Action("Category", "Category")">Loại Sản Phẩm</a></li>
+                            @*<li class="breadcrumb-item"><a href="#">Sub category</a></li>*@
+                            <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
                         </ol>
                     </nav> <!-- col.// -->
                 </div> <!-- row.// -->
                 <hr>
                 <div class="row">
-                    <div class="col-md-2">Filter by</div> <!-- col.// -->
+                    <div class="col-md-2">Lọc</div> <!-- col.// -->
                     <div class="col-md-10">
                         <ul class="list-inline">
                             <li class="list-inline-item mr-3 dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">   Supplier type </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lọc theo kiểu </a>
                                 <div class="dropdown-menu p-3" style="max-width:400px;">
                                     <label class="form-check">
-                                        <input type="radio" name="myfilter" class="form-check-input"> Good supplier
+                                        <input type="radio" name="myfilter" class="form-check-input"> Sản phẩm được đánh giá cao
                                     </label>
                                     <label class="form-check">
-                                        <input type="radio" name="myfilter" class="form-check-input"> Best supplier
+                                        <input type="radio" name="myfilter" class="form-check-input"> Sản phẩm bán chạy
                                     </label>
                                     <label class="form-check">
-                                        <input type="radio" name="myfilter" class="form-check-input"> New supplier
+                                        <input type="radio" name="myfilter" class="form-check-input"> Sản phẩm mới nhất
                                     </label>
                                 </div> <!-- dropdown-menu.// -->
                             </li>
                             <li class="list-inline-item mr-3 dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">  Country </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">  Quốc gia </a>
                                 <div class="dropdown-menu p-3">
                                     <label class="form-check"> 	 <input type="checkbox" class="form-check-input"> China    </label>
                                     <label class="form-check">   	 <input type="checkbox" class="form-check-input"> Japan      </label>
@@ -51,16 +290,16 @@
                                     <label class="form-check">  <input type="checkbox" class="form-check-input"> Russia     </label>
                                 </div> <!-- dropdown-menu.// -->
                             </li>
-                            <li class="list-inline-item mr-3 dropdown">
+                            @*<li class="list-inline-item mr-3 dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Feature</a>
                                 <div class="dropdown-menu">
                                     <a href="" class="dropdown-item">Anti backterial</a>
                                     <a href="" class="dropdown-item">With buttons</a>
                                     <a href="" class="dropdown-item">Extra safety</a>
                                 </div>
-                            </li>
-                            <li class="list-inline-item mr-3"><a href="#">Color</a></li>
-                            <li class="list-inline-item mr-3"><a href="#">Size</a></li>
+                            </li>*@
+                            <li class="list-inline-item mr-3"><a href="#">Màu</a></li>
+                            <li class="list-inline-item mr-3"><a href="#">Kích Cỡ</a></li>
                             <li class="list-inline-item mr-3">
                                 <div class="form-inline">
                                     <label class="mr-2">Price</label>
@@ -105,53 +344,55 @@
                 </div>
             </div>
         </header><!-- sect-heading -->
-       
+
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-md-3">
-                    <figure class="card card-product-grid">
-                        <div class="img-wrap">
-                            <span class="badge badge-danger"> NEW </span>
-                            <img src="~/Content/images/items/@item.Avatar">
-                        </div> <!-- img-wrap.// -->
-                        <figcaption class="info-wrap">
-                            <a href="@Url.Action("Detail", "Product", new { Id = item.Id })" class="title mb-2">@item.Name</a>
-                            <div class="price-wrap">
-                                <span class="price">@item.Price VND</span>
-                                <small class="text-muted">/per item</small>
-                            </div> <!-- price-wrap.// -->
+            <div class="col-md-3">
+                <figure class="card card-product-grid">
+                    <div class="img-wrap">
+                        <span class="badge badge-danger"> NEW </span>
+                        <img src="~/Content/images/items/@item.Avatar">
+                    </div> <!-- img-wrap.// -->
+                    <figcaption class="info-wrap">
+                        <a href="@Url.Action("Detail", "Product", new { Id = item.Id })" class="title mb-2">@item.Name</a>
+                        <div class="price-wrap">
+                            <span class="price">@item.Price VND</span>
+                            <small class="text-muted">/per item</small>
+                        </div> <!-- price-wrap.// -->
 
-                            <p class="mb-2"> 2 Pieces  <small class="text-muted">(Min Order)</small></p>
+                        <p class="mb-2"> 2 Pieces  <small class="text-muted">(Min Order)</small></p>
 
-                            <p class="text-muted ">@item.ShortDes</p>
+                        <p class="text-muted ">@item.ShortDes</p>
 
-                            <hr>
+                        <hr>
 
-                            <p class="mb-3">
-                                <span class="tag"> <i class="fa fa-check"></i> Verified</span>
-                                <span class="tag"> 2 Years </span>
-                                <span class="tag"> 23 reviews </span>
-                                <span class="tag"> Japan </span>
-                            </p>
+                        <p class="mb-3">
+                            <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                            <span class="tag"> 2 Years </span>
+                            <span class="tag"> 23 reviews </span>
+                            <span class="tag"> Japan </span>
+                        </p>
 
-                            <label class="custom-control mb-3 custom-checkbox">
-                                <input type="checkbox" class="custom-control-input">
-                                <div class="custom-control-label">
-                                    Add to compare
-                                </div>
-                            </label>
+                        <label class="custom-control mb-3 custom-checkbox">
+                            <input type="checkbox" class="custom-control-input">
+                            <div class="custom-control-label">
+                                Add to compare
+                            </div>
+                        </label>
 
-                            <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact supplier </a>
+                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Contact supplier </a>
 
-                        </figcaption>
-                    </figure>
-                </div> <!-- col.// -->
+                    </figcaption>
+                </figure>
+            </div>  <!-- col.// -->
             }
         </div> <!-- row end.// -->
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
 
-
-        <nav class="mb-4" aria-label="Page navigation sample">
+        @Html.PagedListPager(Model, page => Url.Action("ProductCategoryList",
+            new { page, currentFilter = ViewBag.CurrentFilter }))
+        @*<nav class="mb-4" aria-label="Page navigation sample">
             <ul class="pagination">
                 <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -161,7 +402,7 @@
                 <li class="page-item"><a class="page-link" href="#">5</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul>
-        </nav>
+        </nav>*@
 
 
         <div class="box text-center">

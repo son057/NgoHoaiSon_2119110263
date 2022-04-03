@@ -11,6 +11,11 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         // GET: Admin/HomeAdmin
         public ActionResult Index()
         {
+            //if(Session["UserAdmin"].ToString()=="")
+            //{
+            //    //Chuyển hướng website
+            //    Redirect("~/Admin/login");
+            //}    
             return View();
         }
     }

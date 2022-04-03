@@ -11,7 +11,7 @@ namespace WebsiteBanHang.Models
     {
         public int Id { get; set; }
 
-        //[Required(ErrorMessage = "Vui lòng nhập tên sản phẩm")]
+        [Required(ErrorMessage = "Vui lòng nhập tên sản phẩm")]
         [Display(Name = "Tên sản phẩm")]
         public string Name { get; set; }
         [Display(Name = "Hình Đại Diện")]
@@ -21,7 +21,7 @@ namespace WebsiteBanHang.Models
         [Display(Name = "Mô tả ngắn")]
         public string ShortDes { get; set; }
         [Display(Name = "Mô tả đầy đủ")]
-        public string FullDescription { get; set; }
+        public string FullDes { get; set; }
         [Display(Name = "Giá gốc")]
         public Nullable<double> Price { get; set; }
         [Display(Name = "Giá Khuyến Mãi")]
