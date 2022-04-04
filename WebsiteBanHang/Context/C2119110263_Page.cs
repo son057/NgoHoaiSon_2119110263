@@ -18,11 +18,12 @@ namespace WebsiteBanHang.Context
         public string Name { get; set; }
         public string Avatar { get; set; }
         public string ShortDes { get; set; }
-        public string FullDescription { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public Nullable<bool> ShowOnHomePage { get; set; }
         public Nullable<int> DisplayOrder { get; set; }
         public Nullable<System.DateTime> CreatedOnUtc { get; set; }
         public Nullable<System.DateTime> UpdatedOnUtc { get; set; }
+        public string FullDess { get; set; }
+        public string FullDescription { get; set; }
     }
 }

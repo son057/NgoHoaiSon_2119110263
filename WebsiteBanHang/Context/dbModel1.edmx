@@ -43,6 +43,8 @@
           <Property Name="Price" Type="float" />
           <Property Name="Status" Type="int" />
           <Property Name="CreatedOnUtc" Type="datetime" />
+          <Property Name="Email" Type="nchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="2119110263_OrderDetail">
           <Key>
@@ -61,12 +63,13 @@
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Avatar" Type="nchar" MaxLength="100" />
           <Property Name="ShortDes" Type="nvarchar" MaxLength="100" />
-          <Property Name="FullDescription" Type="nvarchar(max)" />
           <Property Name="Deleted" Type="bit" />
           <Property Name="ShowOnHomePage" Type="bit" />
           <Property Name="DisplayOrder" Type="int" />
           <Property Name="CreatedOnUtc" Type="datetime" />
           <Property Name="UpdatedOnUtc" Type="datetime" />
+          <Property Name="FullDess" Type="ntext" />
+          <Property Name="FullDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="2119110263_Product">
           <Key>
@@ -152,21 +155,8 @@
           <Property Name="Status" Type="Int32" />
           <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
           <Property Name="UserId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="C2119110263_Page">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="ShortDes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Boolean" />
-          <Property Name="ShowOnHomePage" Type="Boolean" />
-          <Property Name="DisplayOrder" Type="Int32" />
-          <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="C2119110263_Product">
           <Key>
@@ -205,10 +195,10 @@
           <EntitySet Name="C2119110263_Brand" EntityType="Self.C2119110263_Brand" />
           <EntitySet Name="C2119110263_Category" EntityType="Self.C2119110263_Category" />
           <EntitySet Name="C2119110263_Order" EntityType="Self.C2119110263_Order" />
-          <EntitySet Name="C2119110263_Page" EntityType="Self.C2119110263_Page" />
           <EntitySet Name="C2119110263_Product" EntityType="Self.C2119110263_Product" />
           <EntitySet Name="C2119110263_Users" EntityType="Self.C2119110263_Users" />
           <EntitySet Name="C2119110263_OrderDetail" EntityType="WebsiteBanHangModel1.C2119110263_OrderDetail" />
+          <EntitySet Name="C2119110263_Page" EntityType="WebsiteBanHangModel1.C2119110263_Page" />
         </EntityContainer>
         <EntityType Name="C2119110263_OrderDetail">
           <Key>
@@ -218,6 +208,22 @@
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C2119110263_Page">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="ShortDes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="ShowOnHomePage" Type="Boolean" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="CreatedOnUtc" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
+          <Property Name="FullDess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -258,28 +264,14 @@
           <EntitySetMapping Name="C2119110263_Order">
             <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Order">
               <MappingFragment StoreEntitySet="2119110263_Order">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="C2119110263_Page">
-            <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Page">
-              <MappingFragment StoreEntitySet="2119110263_Page">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
-                <ScalarProperty Name="ShortDes" ColumnName="ShortDes" />
-                <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="ShowOnHomePage" ColumnName="ShowOnHomePage" />
-                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
-                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
-                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -324,6 +316,23 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C2119110263_Page">
+            <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Page">
+              <MappingFragment StoreEntitySet="2119110263_Page">
+                <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+                <ScalarProperty Name="FullDess" ColumnName="FullDess" />
+                <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ShowOnHomePage" ColumnName="ShowOnHomePage" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ShortDes" ColumnName="ShortDes" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

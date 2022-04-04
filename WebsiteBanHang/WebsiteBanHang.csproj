@@ -259,6 +259,7 @@
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Context\C2119110263_Brand.cs">
@@ -323,6 +324,7 @@
     <Compile Include="Models\CategoryMasterData.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\PageMasterData.cs" />
     <Compile Include="Models\PartialMetadataType.cs" />
     <Compile Include="Models\ProductMasterData.cs" />
     <Compile Include="Models\UserMasterData.cs" />
@@ -2843,6 +2845,12 @@
     <Content Include="Areas\Admin\Views\Product\Trash.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Recover.cshtml" />
     <Content Include="Areas\Admin\Views\Product\DeleteTrash.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Page\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2892,6 +2900,7 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

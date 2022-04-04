@@ -20,5 +20,7 @@ namespace WebsiteBanHang.Context
         public Nullable<int> Status { get; set; }
         public Nullable<System.DateTime> CreatedOnUtc { get; set; }
         public Nullable<int> UserId { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
     }
 }

@@ -4,8 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Thanh toán thành công</h2>
+<div class="row" style="margin-left:20px">
+    @using (Html.BeginForm("Success", "Payment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label>Người nhận</label>
+            <input name="Name" required class="form-control" />
+        </div>
 
-<p><a href="@Url.Action("Index","Home")">Tiếp tục mua hàng</a></p>
+        <button type="submit">Gửi đơn hàng</button>
+    }
+
+</div>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+    <a class="btn btn-warning" href="@Url.Action("Index", "Home")">Tiếp tục mua hàng</a>
+</div>
 
 

@@ -50,5 +50,10 @@ namespace WebsiteBanHang.Controllers
             }    
             return View();
         }
+
+        public ActionResult Success()
+        {
+            return View();
+        }
     }
 }

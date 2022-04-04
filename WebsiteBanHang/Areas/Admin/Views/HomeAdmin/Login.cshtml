@@ -1,0 +1,97 @@
+﻿@model WebsiteBanHang.Context.C2119110263_Users
+
+
+@{
+    Layout = null;
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="Bootstrap e-commerce html template similar to Alibaba">
+    <meta name="keywords" content="Online template, shop, theme, template, html, css, bootstrap 4">
+
+    <title>Website title - bootstrap alistyle html template</title>
+
+    <link href="~/Content/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+
+    @*Latest compiled and minified CSS
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">*@
+
+    @*Optional theme*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <script src="~/Scripts/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+    <!-- Bootstrap4 files-->
+    <script src="~/Scripts/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <!-- Font awesome 5 -->
+    <link href="~/Content/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- custom style -->
+    <link href="~/Content/css/ui.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" type="text/css" />
+
+    <!-- custom javascript -->
+    <script src="~/Scripts/js/script.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/js/time.js"></script>
+
+
+    <style>
+        .search-header .form-control, .search-header .custom-select {
+            width: 400px;
+            height: auto;
+        }
+
+        .form-group form-inline {
+            width: auto;
+        }
+    </style>
+</head>
+
+
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y" style="min-height:84vh">
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+    <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Đăng Nhập hệ thống</h4>
+            <a href="https://www.facebook.com/" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
+            <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
+            @using (Html.BeginForm("Login", "HomeAdmin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+
+                    @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+
+                </div>
+                <div class="form-group">
+
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                </div>
+                <div class="form-group">
+                    <a href="#" class="float-right">Quên Mật Khẩu?</a>
+                    <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label"> Nhớ mật khẩu </div> </label>
+                </div> <!-- form-group form-check .// -->
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-primary" value="Đăng Nhập" />
+                </div>
+                <p class="text-center mt-4">Bạn chưa có tài khoản? <a href="#">Đăng Ký</a></p>
+                <br><br> <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+            }
+        </div>
+    </div>
+    
+</section>

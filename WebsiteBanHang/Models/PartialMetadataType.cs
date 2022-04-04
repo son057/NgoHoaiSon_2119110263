@@ -50,4 +50,15 @@ namespace WebsiteBanHang.Context
 
         public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
     }
+
+
+
+    [MetadataType(typeof(PageMasterData))]
+
+    public partial class C2119110263_Page
+    {
+        [NotMapped]
+
+        public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
+    }
 }
