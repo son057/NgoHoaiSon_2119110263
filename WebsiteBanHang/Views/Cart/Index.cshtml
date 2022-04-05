@@ -16,7 +16,7 @@
             var model = {};
             //lấy id sản phẩm
             model.Id = $("#productid").val();
-          
+
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("Remove", "Cart")',
@@ -24,7 +24,7 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function () {
-                    
+
                     $('#CartCount').text(@Session["count"] - 1);
 
                     $("#product-" + model.Id).remove();
@@ -79,12 +79,37 @@
                                             </div> <!-- price-wrap .// -->
                                         </td>
                                         <td class="text-right">
-                                            <input type="hidden" value="@item.C2119110263_Product.Id" id="productid"/>
+                                            <input type="hidden" value="@item.C2119110263_Product.Id" id="productid" />
                                             <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
                                             <a href="" class="btn btn-light" id="removecart"> Xóa</a>
                                         </td>
+
+                                        <td class="text-right">
+                                                
+
+                                                    @*<dl class="dlist-align">
+                                                            <dt>Total price:</dt>
+                                                            <dd class="text-right">USD 568</dd>
+                                                        </dl>
+                                                        <dl class="dlist-align">
+                                                            <dt>Discount:</dt>
+                                                            <dd class="text-right">USD 658</dd>
+                                                        </dl>*@
+                                                    <dl class="dlist-align">
+                                                        <dt>Total:</dt>
+                                                        <dd class="text-right  h5"><strong>@item.C2119110263_Product.PriceDiscount</strong></dd>
+                                                    </dl>
+                                                    <hr>
+                                                    @*<p class="text-center mb-3">
+                                                            <img src="images/misc/payments.png" height="26">
+                                                        </p>*@
+                                            <!-- card .// -->
+                                        </td>
+
                                     </tr>
                                 }
+
+
                             }
                             else
                             {
@@ -122,28 +147,13 @@
                         </form>
                     </div> <!-- card-body.// -->
                 </div>  <!-- card .// -->
-                <div class="card">
-                    <div class="card-body">
-                   
-                        <dl class="dlist-align">
-                            <dt>Total price:</dt>
-                            <dd class="text-right">USD 568</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                            <dt>Discount:</dt>
-                            <dd class="text-right">USD 658</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                            <dt>Total:</dt>
-                            <dd class="text-right  h5"><strong></strong></dd>
-                        </dl>
-                        <hr>
-                        <p class="text-center mb-3">
-                            <img src="images/misc/payments.png" height="26">
-                        </p>
+                @*@foreach (var item in Model)
+                    {*@
 
-                    </div> <!-- card-body.// -->
-                </div>  <!-- card .// -->
+                @*Tính giá giỏ hàng*@
+
+                @*}*@
+
             </aside> <!-- col.// -->
         </div>
 

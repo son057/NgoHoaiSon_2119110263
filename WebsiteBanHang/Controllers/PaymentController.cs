@@ -12,9 +12,14 @@ namespace WebsiteBanHang.Controllers
     {
         WebsiteBanHangEntities2 objWebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         // GET: Payment
-        public ActionResult Index()
+
+        public ActionResult Index(string name, string address, string email)
         {
-            if(Session["idUser"]==null)
+            var order = new C2119110263_Order();
+            order.Name = name;
+            order.Address = address;
+            order.Email = email;
+            if (Session["idUser"] == null)
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -26,8 +31,9 @@ namespace WebsiteBanHang.Controllers
                 C2119110263_Order objOrder = new C2119110263_Order();
                 objOrder.Name = "DonHang-" + DateTime.Now.ToString("yyyyMMddHHmmss");
                 objOrder.UserId = int.Parse(Session["idUser"].ToString());
-                objOrder.CreatedOnUtc =DateTime.Now;
+                objOrder.CreatedOnUtc = DateTime.Now;
                 objOrder.Status = 1;
+
                 objWebsiteBanHangEntities1.C2119110263_Order.Add(objOrder);
                 //lưu thông tin dữ liệu vào bảng order
                 objWebsiteBanHangEntities1.SaveChanges();
@@ -47,10 +53,9 @@ namespace WebsiteBanHang.Controllers
                 }
                 objWebsiteBanHangEntities1.C2119110263_OrderDetail.AddRange(lstOrderDetail);
                 objWebsiteBanHangEntities1.SaveChanges();
-            }    
+            }
             return View();
         }
-
         public ActionResult Success()
         {
             return View();

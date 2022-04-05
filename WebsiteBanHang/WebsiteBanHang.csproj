@@ -2375,6 +2375,7 @@
       <DependentUpon>dbModel1.edmx</DependentUpon>
       <LastGenOutput>dbModel1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
@@ -2688,6 +2689,7 @@
     <Content Include="Scripts\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\ckeditor\vendor\promise.js" />
+    <Content Include="Scripts\controllers\homeController.js" />
     <Content Include="Scripts\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\js\jquery-2.0.0.min.js" />
     <Content Include="Scripts\js\script.js" />
@@ -2863,6 +2865,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\time.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\plugins\jquery.twbsPagination.min.js" />
+    <Content Include="Scripts\plugins\mustache.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

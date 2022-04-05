@@ -4,13 +4,34 @@
     ViewBag.Title = "Index";
 }
 
+
 <h2>Index</h2>
+
+<br>
+<div class="col-md-12">
+    <div class="col-md-11">
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtNameS" placeholder="Type name" />
+        </div>
+        @*<div class="col-md-4">
+            <select class="form-control" id="ddlStatusS">
+                <option value="">All</option>
+                <option value="true">Active</option>
+                <option value="false">Locked</option>
+            </select>
+        </div>*@
+        <div class="col-md-4">
+            <button class="btn btn-primary" id="btnSearch">Search</button>
+            <button class="btn btn-default" id="btnReset">Reset</button>
+        </div>
+    </div>
+</div>
+<br />
 
 
 <!-- /.card-header -->
 <div class="card-body">
     <table id="example2" class="table table-bordered table-hover">
-        
         <thead>
             <tr>
                 <p>

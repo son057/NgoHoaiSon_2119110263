@@ -6,12 +6,21 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebsiteBanHang.Context;
+//using WebsiteBanHang.Context.Models;
+using System.Web.Script.Serialization;
 
 namespace WebsiteBanHang.Areas.Admin.Controllers
 {
     public class HomeAdminController : Controller
     {
+
         WebsiteBanHangEntities2 objwebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
+
+        private WebsiteBanHangEntities2 _context;
+        public HomeAdminController()
+        {
+            _context = new WebsiteBanHangEntities2();
+        }
         // GET: Admin/HomeAdmin
         public ActionResult Index()
         {
@@ -57,6 +66,13 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         }
 
 
+        public ActionResult Logout()
+        {
+            Session.Clear();//remove session
+            return RedirectToAction("Login");
+        }
+
+
         //create a string MD5
         public static string GetMD5(string str)
         {
@@ -71,6 +87,39 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
 
             }
             return byte2String;
+        }
+
+
+
+
+        [HttpGet]
+        public JsonResult LoadData(string name, int page, int pageSize = 3)
+        {
+            IQueryable<C2119110263_Category> model = _context.C2119110263_Category;
+
+            if (!string.IsNullOrEmpty(name))
+                model = model.Where(x => x.Name.Contains(name));
+
+            //if (!string.IsNullOrEmpty(status))
+            //{
+            //    var statusBool = bool.Parse(status);
+            //    //model = model.Where(x => x.Status == statusBool);
+            //}
+
+            int totalRow = model.Count();
+
+            model = model.OrderByDescending(x => x.CreatedOnUtc)
+              .Skip((page - 1) * pageSize)
+              .Take(pageSize);
+
+
+            return Json(new
+            {
+                data = model,
+                total = totalRow,
+                status = true
+            }, JsonRequestBehavior.AllowGet);
+            
         }
     }
 }

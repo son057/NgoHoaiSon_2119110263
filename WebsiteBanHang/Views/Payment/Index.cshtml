@@ -5,11 +5,19 @@
 }
 
 <div class="row" style="margin-left:20px">
-    @using (Html.BeginForm("Success", "Payment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Success", "Payment", FormMethod.Get))
     {
         <div class="form-group">
             <label>Người nhận</label>
             <input name="Name" required class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Địa chỉ</label>
+            <input name="address" required class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required class="form-control" />
         </div>
 
         <button type="submit">Gửi đơn hàng</button>

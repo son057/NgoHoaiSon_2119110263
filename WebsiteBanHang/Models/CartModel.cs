@@ -10,6 +10,13 @@ namespace WebsiteBanHang.Models
     {
         public C2119110263_Product C2119110263_Product { get; set; }
 
+        public int PriceProduct { get; set; }
+
         public int Quantity { get; set; }
+
+        public float SumMoney
+        {
+            get { return PriceProduct * Quantity; }
+        }
     }
 }

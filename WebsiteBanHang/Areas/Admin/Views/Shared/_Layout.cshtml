@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Dashboard</title>
 
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+
+    @*<script src="~/Scripts/bootbox.min.js"></script>
+        <script src="~/Scripts/plugins/mustache.min.js"></script>
+        <script src="~/Scripts/plugins/jquery.twbsPagination.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>*@
+    <script src="~/Scripts/controllers/homeController.js"></script>
 
     <!--Đoạn cần thêm-->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -59,6 +66,17 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="https://localhost:44357/" class="nav-link">Trang chủ người dùng</a>
                 </li>
+
+                @if (Session["idUser"] != null)
+                {
+                    <a href="@Url.Action("Logout", "HomeAdmin")">
+                        <i style="font-size: 2em" class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-warning" href="@Url.Action("Login", "HomeAdmin")">Đăng nhập</a>
+                }
             </ul>
 
             <!-- Right navbar links -->
@@ -219,7 +237,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "Product")" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
