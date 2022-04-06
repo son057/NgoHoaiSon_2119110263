@@ -35,6 +35,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
 
         public ActionResult Login()
         {
+            ViewBag.Error = "";
             return View();
         }
 
@@ -47,6 +48,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             {
                 var f_password = GetMD5(password);
                 var data = objwebsiteBanHangEntities1.C2119110263_Users.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password) && s.IsAdmin == true).ToList();
+
                 if (data.Count() > 0)
                 {
                     //add session

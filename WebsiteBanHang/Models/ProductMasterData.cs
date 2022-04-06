@@ -28,7 +28,7 @@ namespace WebsiteBanHang.Models
         public Nullable<double> PriceDiscount { get; set; }
         [Display(Name = "Loại Sản Phẩm")]
         public Nullable<int> TypeId { get; set; }
-        
+
         public string Slug { get; set; }
         [Display(Name = "Thương Hiệu")]
         public Nullable<int> BrandId { get; set; }
@@ -37,7 +37,6 @@ namespace WebsiteBanHang.Models
         public Nullable<int> DisplayOrder { get; set; }
         public Nullable<System.DateTime> CreatedOnUtc { get; set; }
         public Nullable<System.DateTime> UpdatedOnUtc { get; set; }
-
 
     }
 }

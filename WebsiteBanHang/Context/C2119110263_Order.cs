@@ -22,5 +22,9 @@ namespace WebsiteBanHang.Context
         public Nullable<int> UserId { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public Nullable<int> CustomerID { get; set; }
+        public string ShipName { get; set; }
+        public string ShipMobile { get; set; }
+        public Nullable<bool> IsStatus { get; set; }
     }
 }

@@ -15,5 +15,10 @@ namespace WebsiteBanHang.Models
         public List<C2119110263_Brand> ListBrand { get; set; }
 
         public List<C2119110263_Page> ListPage { get; set; }
+
+
+        public List<C2119110263_Order> ListOrder { get; set; }
+
+        public List<C2119110263_OrderDetail> ListOrderDetail { get; set; }
     }
 }

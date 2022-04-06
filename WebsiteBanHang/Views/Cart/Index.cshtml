@@ -85,24 +85,20 @@
                                         </td>
 
                                         <td class="text-right">
-                                                
 
-                                                    @*<dl class="dlist-align">
-                                                            <dt>Total price:</dt>
-                                                            <dd class="text-right">USD 568</dd>
-                                                        </dl>
-                                                        <dl class="dlist-align">
-                                                            <dt>Discount:</dt>
-                                                            <dd class="text-right">USD 658</dd>
-                                                        </dl>*@
-                                                    <dl class="dlist-align">
-                                                        <dt>Total:</dt>
-                                                        <dd class="text-right  h5"><strong>@item.C2119110263_Product.PriceDiscount</strong></dd>
-                                                    </dl>
-                                                    <hr>
-                                                    @*<p class="text-center mb-3">
-                                                            <img src="images/misc/payments.png" height="26">
-                                                        </p>*@
+
+                                            @*<dl class="dlist-align">
+                                                    <dt>Total price:</dt>
+                                                    <dd class="text-right">USD 568</dd>
+                                                </dl>
+                                                <dl class="dlist-align">
+                                                    <dt>Discount:</dt>
+                                                    <dd class="text-right">USD 658</dd>
+                                                </dl>*@
+                                            <hr>
+                                            @*<p class="text-center mb-3">
+                                                    <img src="images/misc/payments.png" height="26">
+                                                </p>*@
                                             <!-- card .// -->
                                         </td>
 
@@ -121,7 +117,7 @@
                     </table>
 
                     <div class="card-body border-top">
-                        <a href="@Url.Action("Index", "Payment")" class="btn btn-primary float-md-right"> Thanh Toán <i class="fa fa-chevron-right"></i> </a>
+                        <a id="btnPayment" href="@Url.Action("Payment", "Cart")" class="btn btn-primary float-md-right"> Thanh Toán <i class="fa fa-chevron-right"></i> </a>
                         <a href="@Url.Action("Index", "Home")" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Tiếp tục thanh toán</a>
                     </div>
                 </div> <!-- card.// -->
@@ -147,8 +143,39 @@
                         </form>
                     </div> <!-- card-body.// -->
                 </div>  <!-- card .// -->
+                
+                @if (Model != null)
+                {
+                    decimal tongtien = 0;
+                    foreach (var item in Model)
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                @*<dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right">USD 568</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right">USD 658</dd>
+                        </dl>*@
+                                <dl class="dlist-align">
+                                    <dt>Tổng Tiền:</dt>
+                                    <dd class="text-right  h5"><strong>@(Convert.ToDecimal(item.C2119110263_Product.PriceDiscount * item.Quantity))</strong></dd>
+                                </dl>
+                                <hr>
+                                <p class="text-center mb-3">
+                                    <img src="~/Content/images/icons/payments.png" height="26">
+                                </p>
+
+                            </div> <!-- card-body.// -->
+                        </div> <!-- card .// -->
+                        tongtien += Convert.ToDecimal(item.C2119110263_Product.PriceDiscount * item.Quantity);
+                    }
+                }
+
                 @*@foreach (var item in Model)
-                    {*@
+        {*@
 
                 @*Tính giá giỏ hàng*@
 

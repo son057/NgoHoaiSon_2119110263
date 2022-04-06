@@ -22,7 +22,7 @@ namespace WebsiteBanHang
         //protected void Session_Start()
         //{
         //    Session["UserAdmin"] = "";
-        //    Session["UserId"] = "";
+        //    //Session["idUser"] = "";
         //}
 
 

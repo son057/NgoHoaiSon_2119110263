@@ -71,7 +71,9 @@
             <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
             @using (Html.BeginForm("Login", "HomeAdmin", FormMethod.Post))
             {
+
                 @Html.AntiForgeryToken()
+                @Html.Raw(ViewBag.Error)
                 <div class="form-group">
 
                     @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })

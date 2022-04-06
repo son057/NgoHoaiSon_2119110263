@@ -6,21 +6,20 @@ using System.Web;
 
 namespace WebsiteBanHang.Models
 {
-    public class UserMasterData
+    public partial class UserMasterData
     {
        
-
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập họ")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập tên")]
         public string LastName{ get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
         public string Password { get; set; }
 
         [Required]

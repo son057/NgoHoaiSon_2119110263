@@ -11,9 +11,9 @@ namespace WebsiteBanHang.Context
 
     [MetadataType(typeof(UserMasterData))]
 
-    public partial class User
+    public partial class Users
     {
-       
+
     }
 
 
@@ -25,10 +25,10 @@ namespace WebsiteBanHang.Context
 
         public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
 
-        internal static object Include(Func<object, object> p)
-        {
-            throw new NotImplementedException();
-        }
+        //internal static object Include(Func<object, object> p)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 
 
