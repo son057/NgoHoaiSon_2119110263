@@ -4,8 +4,10 @@
 }
 
 <h2>THANH TOÁN</h2>
+
 <div class="content">
     <div class="section group">
+
         @if (Model != null)
         {
             <div class="row">
@@ -40,7 +42,7 @@
             </div>
 
 
-            <div class="row">
+            <div style="margin: 10px" class="row">
                 @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
                 {
                     <div class="form-group">

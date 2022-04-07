@@ -1,0 +1,115 @@
+﻿@model IEnumerable<WebsiteBanHang.Context.C2119110263_Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex">
+                        <h3 class="card-title flex-fill">Quản lý đơn hàng</h3>
+                        @*@Html.ActionLink("Create New", "Create")*@
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedOnUtc)
+                                    </th>
+
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().UserId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Address)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().ShipName)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FirstOrDefault().ShipMobile)
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Address)
+                                        </td>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.CustomerID)
+                                            </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ShipName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ShipMobile)
+                                        </td>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.IsStatus)
+                                            </td>*@
+                                        <td>
+                                            <div class="d-flex">
+                                                <a class="btn btn-danger mx-1" href=@Url.Action("Detail", "Order", new { id = item.Id })> <i class="fas fa-info"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+

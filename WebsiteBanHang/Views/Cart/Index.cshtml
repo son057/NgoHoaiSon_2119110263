@@ -38,6 +38,8 @@
     });
 </script>
 
+@{decimal tongtien = 0;}
+
 <section class="section-content padding-y">
     <div class="container">
 
@@ -59,58 +61,58 @@
                             {
                                 foreach (var item in Model)
                                 {
-                                    <tr id="product-@item.C2119110263_Product.Id">
-                                        <td>
-                                            <figure class="itemside">
-                                                <div class="aside"><img src="~/Content/images/items/@item.C2119110263_Product.Avatar" class="img-sm"></div>
-                                                <figcaption class="info">
-                                                    <a href="#" class="title text-dark">@item.C2119110263_Product.Name</a>
-                                                    <p class="text-muted small">@item.C2119110263_Product.ShortDes</p>
-                                                </figcaption>
-                                            </figure>
-                                        </td>
-                                        <td>
-                                            <input type="text" value="@item.Quantity" />
-                                        </td>
-                                        <td>
-                                            <div class="price-wrap">
-                                                <var class="price">@item.C2119110263_Product.PriceDiscount</var>
-                                                @*<small class="text-muted"> $315.20 each </small>*@
-                                            </div> <!-- price-wrap .// -->
-                                        </td>
-                                        <td class="text-right">
-                                            <input type="hidden" value="@item.C2119110263_Product.Id" id="productid" />
-                                            <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
-                                            <a href="" class="btn btn-light" id="removecart"> Xóa</a>
-                                        </td>
+                                <tr id="product-@item.C2119110263_Product.Id">
+                                    <td>
+                                        <figure class="itemside">
+                                            <div class="aside"><img src="~/Content/images/items/@item.C2119110263_Product.Avatar" class="img-sm"></div>
+                                            <figcaption class="info">
+                                                <a href="#" class="title text-dark">@item.C2119110263_Product.Name</a>
+                                                <p class="text-muted small">@item.C2119110263_Product.ShortDes</p>
+                                            </figcaption>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <input name="qty" value="@item.Quantity" type="number" min="1" />
+                                    </td>
+                                    <td>
+                                        <div class="price-wrap">
+                                            <var class="price">@item.C2119110263_Product.PriceDiscount</var>
+                                            @*<small class="text-muted"> $315.20 each </small>*@
+                                        </div> <!-- price-wrap .// -->
+                                    </td>
+                                    <td class="text-right">
+                                        <input type="hidden" value="@item.C2119110263_Product.Id" id="productid" />
+                                        <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip"> <i class="fa fa-heart"></i></a>
+                                        <a href="" class="btn btn-light" id="removecart"> Xóa</a>
+                                    </td>
 
-                                        <td class="text-right">
-
-
-                                            @*<dl class="dlist-align">
-                                                    <dt>Total price:</dt>
-                                                    <dd class="text-right">USD 568</dd>
-                                                </dl>
-                                                <dl class="dlist-align">
-                                                    <dt>Discount:</dt>
-                                                    <dd class="text-right">USD 658</dd>
-                                                </dl>*@
-                                            <hr>
-                                            @*<p class="text-center mb-3">
-                                                    <img src="images/misc/payments.png" height="26">
-                                                </p>*@
-                                            <!-- card .// -->
-                                        </td>
-
-                                    </tr>
-                                }
+                                    <td class="text-right">
 
 
+                                        @*<dl class="dlist-align">
+                        <dt>Total price:</dt>
+                        <dd class="text-right">USD 568</dd>
+                    </dl>
+                    <dl class="dlist-align">
+                        <dt>Discount:</dt>
+                        <dd class="text-right">USD 658</dd>
+                    </dl>*@
+                                        <hr>
+                                        @*<p class="text-center mb-3">
+                        <img src="images/misc/payments.png" height="26">
+                    </p>*@
+                                        <!-- card .// -->
+                                    </td>
+
+                                </tr>
                             }
-                            else
-                            {
-                                <p>Không có sản phẩm trong giỏ hàng</p>
-                            }
+
+
+                        }
+                        else
+                        {
+                            <p>Không có sản phẩm trong giỏ hàng</p>
+                        }
 
 
                         </tbody>
@@ -143,10 +145,10 @@
                         </form>
                     </div> <!-- card-body.// -->
                 </div>  <!-- card .// -->
-                
+
                 @if (Model != null)
                 {
-                    decimal tongtien = 0;
+
                     foreach (var item in Model)
                     {
                         <div class="card">
@@ -170,16 +172,16 @@
 
                             </div> <!-- card-body.// -->
                         </div> <!-- card .// -->
-                        tongtien += Convert.ToDecimal(item.C2119110263_Product.PriceDiscount * item.Quantity);
+                        tongtien += item.Amount;
                     }
                 }
 
-                @*@foreach (var item in Model)
-        {*@
+            @*@foreach (var item in Model)
+    {*@
 
-                @*Tính giá giỏ hàng*@
+            @*Tính giá giỏ hàng*@
 
-                @*}*@
+            @*}*@
 
             </aside> <!-- col.// -->
         </div>
