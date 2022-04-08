@@ -48,6 +48,19 @@ namespace WebsiteBanHang.Controllers
             int pageNumber = (page ?? 1);
             return View(objHomeModel);
         }
+
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FacebookCallback");
+                return uriBuilder.Uri;
+            }
+        }
+
         [HttpGet]
         public ActionResult Register()
         {
@@ -133,6 +146,66 @@ namespace WebsiteBanHang.Controllers
 
             }
             return byte2String;
+        }
+
+        public ActionResult LoginFacebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppId"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                response_type = "code",
+                scope = "email",
+            });
+
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+
+        public ActionResult FacebookCallback(string code,C2119110263_Users objUser)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppId"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                code = code
+            });
+
+
+            var accessToken = result.access_token;
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                fb.AccessToken = accessToken;
+                // Get the user's information, like email, first name, middle name etc
+                dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+                string email = me.email;
+                string userName = me.email;
+                string firstname = me.first_name;
+                string middlename = me.middle_name;
+                string lastname = me.last_name;
+
+                
+                objUser.Email = email;
+                //user.UserName = email;
+                //user.Status = true;
+                objUser.FirstName = firstname;
+                objUser.LastName = lastname;
+                //user.CreatedDate = DateTime.Now;
+                objwebsiteBanHangEntities1.C2119110263_Users.Add(objUser);
+                objwebsiteBanHangEntities1.SaveChanges();
+                //var data = objwebsiteBanHangEntities1.C2119110263_Users.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password)).ToList();
+                //if (objUser > 0)
+                //{
+                //    var userSession = new UserLogin();
+                //    userSession.UserName = user.UserName;
+                //    userSession.UserID = user.ID;
+                //    Session.Add(CommonConstants.USER_SESSION, userSession);
+                //}
+            }
+            return Redirect("/");
         }
     }
 }

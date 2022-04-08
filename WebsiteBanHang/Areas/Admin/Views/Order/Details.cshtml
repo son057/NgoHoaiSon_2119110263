@@ -1,10 +1,11 @@
 ﻿@model WebsiteBanHang.Context.C2119110263_OrderDetail
 
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail</h2>
+<h2>Details</h2>
 
 <div>
     <h4>C2119110263_OrderDetail</h4>
@@ -34,17 +35,17 @@
             @Html.DisplayFor(model => model.Quantity)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Price)
-        </dt>
+        </dt>*@
 
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.Price)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    
     @Html.ActionLink("Back to List", "Index")
 </p>
