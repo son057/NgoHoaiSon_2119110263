@@ -5,47 +5,35 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Hóa Đơn</h2>
+<table class="table table-invoice" style="margin:20px">
+    <thead>
+        <tr>
+            <th class="wd-20p">@Html.DisplayNameFor(model => model.OrderId)</th>
+            <th class="wd-40p">@Html.DisplayNameFor(model => model.ProductId)</th>
+            <th class="tx-center">@Html.DisplayNameFor(model => model.Quantity)</th>
+            <th class="tx-center">@Html.DisplayNameFor(model => model.Price)</th>
 
-<div>
-    <h4>C2119110263_OrderDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderId)
-        </dt>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Price)
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-        <dd>
-            @Html.DisplayFor(model => model.OrderId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>*@
-
-        @*<dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>*@
-
-    </dl>
-</div>
 <p>
-    
-    @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index")
 </p>

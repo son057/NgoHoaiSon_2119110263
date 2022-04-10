@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using WebsiteBanHang.Context;
 //using WebsiteBanHang.Context.Models;
 using System.Web.Script.Serialization;
+using WebsiteBanHang.Models;
 
 namespace WebsiteBanHang.Areas.Admin.Controllers
 {
@@ -28,7 +29,12 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             //{
             //    //Chuyển hướng website
             //    Redirect("~/Admin/login");
-            //}    
+            //}
+            ViewBag.PageView = HttpContext.Application["PageView"].ToString(); // Lấy số lượng người truy cập từ application
+            ViewBag.Online = HttpContext.Application["Online"].ToString(); // Lấy số lượng người online từ application
+            ViewBag.TongDoanhThu = ThongKeTongDoanhThu();// Thống kê tổng doanh thu
+            ViewBag.TongDDH = ThongKeDonHang(); // Thống kê đơn hàng
+            ViewBag.TongThanhVien = ThongKeThanhVien(); // Thống Kê thành viên
             return View();
         }
 
@@ -122,6 +128,27 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
                 status = true
             }, JsonRequestBehavior.AllowGet);
             
+        }
+
+        public decimal ThongKeTongDoanhThu()
+        {
+            
+            //Thống kê theo tất cả doanh thu
+            decimal TongDoanhThu = decimal.Parse(objwebsiteBanHangEntities1.C2119110263_OrderDetail.Sum(n => n.Price * n.Quantity).ToString());
+            return TongDoanhThu;
+        }
+        public double ThongKeDonHang()
+        {
+            //Đếm đơn đặt hàng
+            double slDDH = objwebsiteBanHangEntities1.C2119110263_Order.Count();
+            return slDDH;
+        }
+
+        public double ThongKeThanhVien()
+        {
+            //Đếm đơn đặt hàng
+            double slTV = objwebsiteBanHangEntities1.C2119110263_Users.Count();
+            return slTV;
         }
     }
 }

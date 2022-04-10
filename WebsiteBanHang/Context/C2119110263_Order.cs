@@ -15,6 +15,7 @@ namespace WebsiteBanHang.Context
     public partial class C2119110263_Order
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<int> Status { get; set; }

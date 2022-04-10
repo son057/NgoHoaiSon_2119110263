@@ -13,7 +13,6 @@
                 <div class="card">
                     <div class="card-header d-flex">
                         <h3 class="card-title flex-fill">Quản lý người dùng</h3>
-                        @Html.ActionLink("Create New", "Create")
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -56,12 +55,19 @@
                                         @Html.DisplayFor(modelItem => item.Password)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.IsAdmin)
+                                        @if (item.IsAdmin== true)
+                                        {
+                                            <p>Quản Trị Viên</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Thành Viên</p>
+                                        }
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "User", new { id = item.Id })> <i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger mx-1" href=@Url.Action("Details", "User", new { id = item.Id })> <i class="fa fa-info"></i></a>
+                                        <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "User", new { id = item.Id })><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 }

@@ -1,81 +1,104 @@
 ﻿@model WebsiteBanHang.Context.C2119110263_Brand
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn có chắc chắn xóa không?</h3>
 <div>
-    <h4>C2119110263_Brand</h4>
+    <h4>Xóa Thương Hiệu</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <table style="margin: 40px" class="table table-bordered">
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Avatar)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Avatar)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Slug)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Slug)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShowOnHomePage)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.ShowOnHomePage)
+            </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DisplayOrder)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.DisplayOrder)
+            </td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Avatar)
-        </dd>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreatedOnUtc)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreatedOnUtc)
+            </td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Slug)
-        </dt>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.UpdatedOnUtc)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.UpdatedOnUtc)
+            </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Slug)
-        </dd>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Deleted)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Deleted)
+            </td>
+        </tr>
+    </table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowOnHomePage)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShowOnHomePage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DisplayOrder)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DisplayOrder)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOnUtc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOnUtc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedOnUtc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedOnUtc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Deleted)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm("Delete", "Brand", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @using (Html.BeginForm("Delete", "Brand", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input style="margin: 40px" type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

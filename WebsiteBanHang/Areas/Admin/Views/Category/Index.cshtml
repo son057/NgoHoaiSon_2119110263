@@ -4,15 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-
-<h2>Index</h2>
-
-<br>
-<div class="col-md-12">
+<!--<div class="col-md-12">
     <div class="col-md-11">
         <div class="col-md-4">
             <input type="text" class="form-control" id="txtNameS" placeholder="Type name" />
-        </div>
+        </div>-->
         @*<div class="col-md-4">
             <select class="form-control" id="ddlStatusS">
                 <option value="">All</option>
@@ -20,81 +16,93 @@
                 <option value="false">Locked</option>
             </select>
         </div>*@
-        <div class="col-md-4">
+        <!--<div class="col-md-4">
             <button class="btn btn-primary" id="btnSearch">Search</button>
             <button class="btn btn-default" id="btnReset">Reset</button>
         </div>
     </div>
-</div>
+</div>-->
 <br />
 
 
-<!-- /.card-header -->
-<div class="card-body">
-    <table id="example2" class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <p>
-                    @Html.ActionLink("Create New", "Create")
-                </p>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Avartar)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Slug)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ShowOnHomePage)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DisplayOrder)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Deleted)
-                </th>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex">
+                        <h3 class="card-title flex-fill">Quản lý loại sản phẩm</h3>
+                        @Html.ActionLink("Create New", "Create")
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
 
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Avartar)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Slug)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ShowOnHomePage)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DisplayOrder)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Deleted)
+                                    </th>
 
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        <img style="width:8em" src="~/Content/images/category/@item.Avartar" alt="Alternate Text" />
 
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Slug)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ShowOnHomePage)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DisplayOrder)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Deleted)
+                                    </td>
 
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        <img style="width:8em" src="~/Content/images/category/@item.Avartar" alt="Alternate Text" />
-
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Slug)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ShowOnHomePage)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DisplayOrder)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Deleted)
-                    </td>
-
-                    <td>
-                        <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "Category", new { id = item.Id })> <i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger mx-1" href=@Url.Action("Details", "Category", new { id = item.Id })> <i class="fas fa-info"></i></a>
-                        <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "Category", new { id = item.Id })><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-<!-- /.card-body -->
+                                    <td>
+                                        <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "Category", new { id = item.Id })> <i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger mx-1" href=@Url.Action("Details", "Category", new { id = item.Id })> <i class="fas fa-info"></i></a>
+                                        <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "Category", new { id = item.Id })><i class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

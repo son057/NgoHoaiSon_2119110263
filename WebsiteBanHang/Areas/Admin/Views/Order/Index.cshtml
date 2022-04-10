@@ -7,112 +7,149 @@
 
 
 <section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header d-flex">
-                        <h3 class="card-title flex-fill">Quản lý đơn hàng</h3>
-                        @*@Html.ActionLink("Create New", "Create")*@
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
+    <table class="table table-striped table-bordered" border="1" role="grid" style="width: 100%;padding-top:15px;" id="dataTables">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex">
+                            <h3 class="card-title flex-fill">Quản lý đơn hàng</h3>
+                            
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
 
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedOnUtc)
-                                    </th>
-
-
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().UserId)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().Address)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().ShipName)
-                                    </th>
-
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.FirstOrDefault().ShipMobile)
-                                    </th>
-
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Price)
-                                        </td>
-                                        <td>      
-                                            <div class="col-md-10">
-                                                
-                                                @Html.DropDownListFor(modelItem => item.Status,(IEnumerable<SelectListItem>)ViewBag.OrderType as SelectList, new { htmlAttributes = new { @class = "form-control" } })
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.CreatedOnUtc)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.UserId)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Email)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Address)
-                                        </td>
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.CustomerID)
-                                            </td>*@
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ShipName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ShipMobile)
-                                        </td>
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.IsStatus)
-                                            </td>*@
-                                        <td>
-                                            <div class="d-flex">
-                                                <a class="btn btn-danger mx-1" href=@Url.Action("Details", "Order", new { id = item.Id })> <i class="fas fa-info"></i></a>
-                                            </div>
-                                        </td>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedOnUtc)
+                                        </th>
+
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().UserId)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().Address)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().ShipName)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FirstOrDefault().ShipMobile)
+                                        </th>
+
+                                        <th></th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                <div class="col-md-10">
+
+                                                    @if (item.Status == 1)
+                                                    {
+                                                        <p>Chờ lấy hàng</p>
+                                                    }
+
+                                                    @if (item.Status == 2)
+                                                    {
+                                                        <p>Đang Vận Chuyển</p>
+                                                    }
+
+                                                    @if (item.Status == 3)
+                                                    {
+                                                        <p>Giao Hàng Thành Công</p>
+                                                    }
+
+                                                    @if (item.Status == 4)
+                                                    {
+                                                        <p>Đã Hủy</p>
+                                                    }
+
+                                                    @*<input type="text" value="@ViewBag.OrderType as SelectList" name="ordertype" class="form-control"/>*@
+
+                                                    @*@Html.DropDownListFor(modelItem => item.Status, (IEnumerable<SelectListItem>)ViewBag.OrderType as SelectList, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.UserId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Address)
+                                            </td>
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.CustomerID)
+                                                </td>*@
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ShipName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ShipMobile)
+                                            </td>
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.IsStatus)
+                                                </td>*@
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "Order", new { id = item.Id })> <i class="fas fa-edit"></i></a>
+                                                    <a class="btn btn-danger mx-1" href=@Url.Action("Details", "Order", new { id = item.Id })> <i class="fas fa-info"></i></a>
+                                                    @*<a class="btn btn-danger mx-1" href="#" id="btnExportExcel"> <i class="fa-solid fa-download"></i></a>*@
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
+                <!-- /.col -->
             </div>
-            <!-- /.col -->
+            <!-- /.row -->
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
+        </table>
+        <!-- /.container-fluid -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#dataTables').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+        </script>
+
 </section>
 

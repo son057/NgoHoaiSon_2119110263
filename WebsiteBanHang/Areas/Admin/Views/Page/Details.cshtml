@@ -4,93 +4,69 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Bài Viết</h2>
 
-<div>
-    <h4>C2119110263_Page</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="card-body my-3">
+    <table class="table table-bordered">
+        
+        <tr>
+            <th style="width:120px">Tên Trường</th>
+            <th>Nội dung</th>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <th>@Html.DisplayNameFor(model => model.Avatar)</th>
+            <td>@Html.DisplayFor(model => model.Avatar)</td>
+        </tr>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.ShortDes)</th>
+            <td>@Html.DisplayFor(model => model.ShortDes)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Deleted)</th>
+            <td>@Html.DisplayFor(model => model.Deleted)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ShowOnHomePage)</th>
+            <td>@Html.DisplayFor(model => model.ShowOnHomePage)</td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Avatar)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShortDes)
-        </dt>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.DisplayOrder)</th>
+            <td>@Html.DisplayFor(model => model.DisplayOrder)</td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShortDes)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Deleted)
-        </dt>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CreatedOnUtc)</th>
+            <td>@Html.DisplayFor(model => model.CreatedOnUtc)</td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Deleted)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShowOnHomePage)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShowOnHomePage)
-        </dd>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.UpdatedOnUtc)</th>
+            <td>@Html.DisplayFor(model => model.UpdatedOnUtc)</td>
+        </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DisplayOrder)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DisplayOrder)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOnUtc)
-        </dt>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FullDess)</th>
+            <td>@Html.DisplayFor(model => model.FullDess)</td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOnUtc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedOnUtc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedOnUtc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FullDess)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FullDess)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FullDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FullDescription)
-        </dd>
-
-    </dl>
+        @*<tr>
+            <th>@Html.DisplayNameFor(model => model.FullDescription)</th>
+            <td>@Html.DisplayFor(model => model.FullDescription)</td>
+        </tr>*@
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

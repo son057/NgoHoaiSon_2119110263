@@ -5,60 +5,71 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>Bạn có muốn xóa không?</h3>
 <div>
-    <h4>C2119110263_Users</h4>
+    <h4>Xóa Thương Hiệu</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+    <table style="margin: 40px" class="table table-bordered">
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.FirstName)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.LastName)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Email)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Password)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Password)
+            </td>
+        </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+        <tr>
+            <th>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsAdmin)
+                </dt>
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.IsAdmin)
+            </td>
+        </tr>
+    </table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAdmin)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsAdmin)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("Delete", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input style="margin: 40px" type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

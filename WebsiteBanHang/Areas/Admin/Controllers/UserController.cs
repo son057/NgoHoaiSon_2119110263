@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,6 +24,22 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             var objUser = objwebsiteBanHangEntities1.C2119110263_Users.Where(n => n.Id == id).FirstOrDefault();
             return View(objUser);
         }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var objUser = objwebsiteBanHangEntities1.C2119110263_Users.Where(n => n.Id == id).FirstOrDefault();
+            return View(objUser);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(C2119110263_Users objUser)
+        {
+            objwebsiteBanHangEntities1.Entry(objUser).State = EntityState.Modified;
+            objwebsiteBanHangEntities1.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
 
         [HttpGet]

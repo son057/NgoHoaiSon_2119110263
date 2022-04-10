@@ -13,6 +13,46 @@ namespace WebsiteBanHang
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            
+
+            routes.MapRoute(
+               name: "vechungtoi",
+               url: "ve-chung-toi",
+               defaults: new { controller = "Starter", action = "Starter", id = UrlParameter.Optional },
+               namespaces: new[] { "WebsiteBanHang.Controllers" }
+           );
+
+            routes.MapRoute(
+               name: "dangky",
+               url: "dang-ky",
+               defaults: new { controller = "Home", action = "Register", id = UrlParameter.Optional },
+               namespaces: new[] { "WebsiteBanHang.Controllers" }
+           );
+
+            routes.MapRoute(
+               name: "dangnhap",
+               url: "dang-nhap",
+               defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional },
+               namespaces: new[] { "WebsiteBanHang.Controllers" }
+           );
+
+            routes.MapRoute(
+               name: "chinhsachbanhang",
+               url: "chinh-sach-ban-hang",
+               defaults: new { controller = "Content", action = "Content", id = UrlParameter.Optional },
+               namespaces: new[] { "WebsiteBanHang.Controllers" }
+           );
+
+            
+
+            routes.MapRoute(
+              name: "lienhe",
+              url: "lien-he",
+              defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+              namespaces: new[] { "WebsiteBanHang.Controllers" }
+          );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
@@ -20,12 +60,9 @@ namespace WebsiteBanHang
                 new[] { "WebsiteBanHang.Controllers" }
             );
 
-            routes.MapRoute(
-               name: "Contact",
-               url: "lien-he",
-               defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
-               namespaces: new[] { "WebsiteBanHang.Controllers" }
-           );
+           
+
+
         }
     }
 }

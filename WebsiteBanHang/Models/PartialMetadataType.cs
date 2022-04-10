@@ -9,9 +9,9 @@ using WebsiteBanHang.Models;
 namespace WebsiteBanHang.Context
 {
 
-    [MetadataType(typeof(UserMasterData))]
+    [MetadataType(typeof(UsersMasterData))]
 
-    public partial class Users
+    public partial class C2119110263_Users
     {
 
     }
@@ -60,5 +60,13 @@ namespace WebsiteBanHang.Context
         [NotMapped]
 
         public System.Web.HttpPostedFileBase ImageUpLoad { get; set; }
+    }
+
+
+    [MetadataType(typeof(OrderMasterData))]
+
+    public partial class C2119110263_Order
+    {
+       
     }
 }
