@@ -347,7 +347,7 @@
 
                         </div> <!-- img-wrap.// -->
                         <figcaption class="info-wrap">
-                            <a href="@Url.Action("Detail","Product",new { Id = item.Id })" class="title mb-2">@item.Name</a>
+                            <a href="@Url.RouteUrl("XemChiTiet", new {@id=item.Id,@tensp=item.Slug })" class="title mb-2">@item.Name</a>
                             <div class="price-wrap">
                                 <span class="price">@item.Price</span>
                                 <small class="text-muted">/per item</small>

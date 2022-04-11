@@ -10,6 +10,7 @@ using static WebsiteBanHang.Common;
 using PagedList;
 using PagedList.Mvc;
 using WebsiteBanHang.Context;
+using ClosedXML.Excel;
 
 namespace WebsiteBanHang.Areas.Admin.Controllers
 {
@@ -20,9 +21,6 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index(string currentFilter, string SearchString, int? page)
         {
-
-            
-
             var lstProduct = new List<C2119110263_Product>();
             if (SearchString !=null)
             {
@@ -35,7 +33,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(SearchString))
             {
                 //lấy ds sản phẩm theo từ khóa tìm kiếm
-                lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString)).ToList();
+                lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString) || n.NameUnsigned.Contains(SearchString)).ToList();
             }
             else
             {
@@ -222,5 +220,42 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         //    objProduct.CreatedOnUtc = DateTime.Now;
         //    return RedirectToAction("Index", "Product");
         //}
+
+        [HttpPost]
+        public FileResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[15] {
+                new DataColumn("Name"),
+                new DataColumn("Avatar"),
+                new DataColumn("CategoryId"),
+                new DataColumn("ShortDes"),
+                new DataColumn("FullDes"),
+                new DataColumn("Price"),
+                new DataColumn("PriceDiscount"),
+                new DataColumn("TypeId"),
+                new DataColumn("Slug"),
+                new DataColumn("BrandId"),
+                new DataColumn("Deleted"),
+                new DataColumn("ShowOnHomePage"),
+                new DataColumn("DisplayOrder"),
+                new DataColumn("CreatedOnUtc"),
+                new DataColumn("UpdatedOnUtc"),
+            });
+            var emps = from emp in objWebsiteBanHangEntities1.C2119110263_Product.ToList() select emp;
+            foreach (var emp in emps)
+            {
+                dt.Rows.Add(emp.Name,emp.Avatar,emp.CategoryId,emp.ShortDes,emp.FullDes,emp.Price,emp.PriceDiscount,emp.TypeId,emp.Slug,emp.BrandId,emp.Deleted,emp.ShowOnHomePage,emp.DisplayOrder,emp.CreatedOnUtc,emp.UpdatedOnUtc);
+            }
+            using(XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformat-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                };
+            }    
+        }
     }
 }

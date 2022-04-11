@@ -13,8 +13,13 @@ namespace WebsiteBanHang
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+               name: "tintuc",
+               url: "tin-tuc",
+               defaults: new { controller = "Content", action = "Page", id = UrlParameter.Optional },
+               namespaces: new[] { "WebsiteBanHang.Controllers" }
+           );
 
-            
 
             routes.MapRoute(
                name: "vechungtoi",
@@ -43,8 +48,8 @@ namespace WebsiteBanHang
                defaults: new { controller = "Content", action = "Content", id = UrlParameter.Optional },
                namespaces: new[] { "WebsiteBanHang.Controllers" }
            );
+          
 
-            
 
             routes.MapRoute(
               name: "lienhe",
@@ -53,15 +58,33 @@ namespace WebsiteBanHang
               namespaces: new[] { "WebsiteBanHang.Controllers" }
           );
 
+
+           
+            //Cấu hình đường dẫn trang xem thương hiệu
+            routes.MapRoute(
+              name: "thuonghieu",
+              url: "thuong-hieu",
+              defaults: new { controller = "Brand", action = "Brand", id = UrlParameter.Optional },
+              namespaces: new[] { "WebsiteBanHang.Controllers" }
+          );
+
+
+            routes.MapRoute(
+              name: "XemChiTiet",
+              url: "{tensp}-{id}",
+              defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
+              namespaces: new[] { "WebsiteBanHang.Controllers" }
+          );
+
+           
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 new[] { "WebsiteBanHang.Controllers" }
             );
-
-           
-
 
         }
     }

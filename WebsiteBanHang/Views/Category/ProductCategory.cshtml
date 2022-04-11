@@ -173,7 +173,7 @@
                     <article class="card card-product-list">
                         <div class="row no-gutters">
                             <aside class="col-md-3">
-                                <a href="@Url.Action("Detail", "Product", new { Id = item.Id })" class="img-wrap">
+                                <a href="@Url.RouteUrl("XemChiTiet", new {@id=item.Id,@tensp=item.Slug })" class="img-wrap">
                                     <span class="badge badge-danger"> NEW </span>
 
                                     <img src="~/Content/images/items/@item.Avatar">
@@ -182,36 +182,36 @@
                             <div class="col-md-6">
                                 <div class="info-main">
 
-                                    @Html.ActionLink(item.Name, "ProductCategory", "Category", new { Id = item.Id }, null)
+                                        @Html.RouteLink(item.Name, "XemChiTiet", new {@id=item.Id,@tensp=item.Slug }, null)
 
-                                    <div class="rating-wrap mb-2">
-                                        <ul class="rating-stars">
-                                            <li style="width:100%" class="stars-active">
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="label-rating">9/10</div>
-                                    </div> <!-- rating-wrap.// -->
+                                        <div class="rating-wrap mb-2">
+                                            <ul class="rating-stars">
+                                                <li style="width:100%" class="stars-active">
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </li>
+                                            </ul>
+                                            <div class="label-rating">9/10</div>
+                                        </div> <!-- rating-wrap.// -->
 
-                                    <p class="mb-3">
-                                        <span class="tag"> <i class="fa fa-check"></i> Verified</span>
-                                        <span class="tag"> 5 Years </span>
-                                        <span class="tag"> 80 reviews </span>
-                                        <span class="tag"> Russia </span>
-                                    </p>
+                                        <p class="mb-3">
+                                            <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                            <span class="tag"> 5 Years </span>
+                                            <span class="tag"> 80 reviews </span>
+                                            <span class="tag"> Russia </span>
+                                        </p>
 
-                                    <p>
-                                        @item.ShortDes
-                                    </p>
+                                        <p>
+                                            @item.ShortDes
+                                        </p>
 
-                                </div> <!-- info-main.// -->
+</div> <!-- info-main.// -->
                             </div> <!-- col.// -->
                             <aside class="col-sm-3">
                                 <div class="info-aside">

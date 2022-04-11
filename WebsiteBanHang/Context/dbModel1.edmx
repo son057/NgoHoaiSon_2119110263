@@ -75,6 +75,7 @@
           <Property Name="UpdatedOnUtc" Type="datetime" />
           <Property Name="FullDess" Type="ntext" />
           <Property Name="FullDescription" Type="nvarchar(max)" />
+          <Property Name="Slug" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="2119110263_Product">
           <Key>
@@ -234,6 +235,7 @@
           <Property Name="UpdatedOnUtc" Type="DateTime" Precision="3" />
           <Property Name="FullDess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -338,6 +340,7 @@
           <EntitySetMapping Name="C2119110263_Page">
             <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Page">
               <MappingFragment StoreEntitySet="2119110263_Page">
+                <ScalarProperty Name="Slug" ColumnName="Slug" />
                 <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
                 <ScalarProperty Name="FullDess" ColumnName="FullDess" />
                 <ScalarProperty Name="UpdatedOnUtc" ColumnName="UpdatedOnUtc" />

@@ -28,8 +28,8 @@ namespace WebsiteBanHang.Controllers
             if (SearchString != "")
             {
                 page = 1;
-                objCategoryModel.ListProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString)).ToList();
-                objCategoryModel.Id = Id;               
+                objCategoryModel.ListProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString) || n.NameUnsigned.Contains(SearchString)).ToList();
+                //objCategoryModel.Id = Id;               
                 objCategoryModel.ListCategory = lstCategory;
                 objCategoryModel.ListBrand = lstBrand;
                 return View(objCategoryModel);
@@ -42,7 +42,7 @@ namespace WebsiteBanHang.Controllers
             {
                 SearchString = currentFilter;
                 lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.CategoryId == Id).ToList();
-                objCategoryModel.Id = Id;
+                //objCategoryModel.Id = Id;
                 objCategoryModel.ListProduct = lstProduct;
                 objCategoryModel.ListCategory = lstCategory;
                 objCategoryModel.ListBrand = lstBrand;

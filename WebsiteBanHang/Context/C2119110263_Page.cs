@@ -25,5 +25,6 @@ namespace WebsiteBanHang.Context
         public Nullable<System.DateTime> UpdatedOnUtc { get; set; }
         public string FullDess { get; set; }
         public string FullDescription { get; set; }
+        public string Slug { get; set; }
     }
 }

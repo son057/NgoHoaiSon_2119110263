@@ -22,9 +22,18 @@ namespace WebsiteBanHang.Controllers
             return View(lstPage);
         }
 
-        public ActionResult DetailPage(int Id)
+        public ActionResult DetailPage(int Id,string tintuc)
         {
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
             var lstPage = objWebsiteBanHangEntities1.C2119110263_Page.Where(n => n.Id == Id).ToList();
+            if (lstPage == null)
+            {
+                return HttpNotFound();
+            }
             return View(lstPage);
         }
     }

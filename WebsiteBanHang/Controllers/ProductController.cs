@@ -12,9 +12,19 @@ namespace WebsiteBanHang.Controllers
     {
         WebsiteBanHangEntities2 objWebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         // GET: Product
-        public ActionResult Detail(int Id)
+        public ActionResult Detail(int Id,string tensp)
         {
+            //Kiểm tra tham số truyền vào có rỗng hay không
+            if(Id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            //Nếu không thì truy xuất csdl lấy ra sản phẩm tương ứng
             var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Id == Id).FirstOrDefault();
+            if(objProduct == null)
+            {
+                return HttpNotFound();
+            }
             return View(objProduct);
         }
 

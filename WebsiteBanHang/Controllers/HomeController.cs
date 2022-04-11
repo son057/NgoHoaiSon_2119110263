@@ -17,15 +17,15 @@ namespace WebsiteBanHang.Controllers
     {
         WebsiteBanHangEntities2 objwebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         
-        public ActionResult Index(int? page,string SearchString="")
+        public ActionResult Index(string SearchString="")
         {
-            var lstProduct = new List<C2119110263_Product>();
-            if (page == null) page = 1;
+            //var lstProduct = new List<C2119110263_Product>();
+            //if (page == null) page = 1;
             
             HomeModel objHomeModel = new HomeModel();
             if (SearchString !="")
             {
-                objHomeModel.ListProduct = objwebsiteBanHangEntities1.C2119110263_Product.Where(n => n.NameUnsigned.Contains(SearchString)).ToList();
+                objHomeModel.ListProduct = objwebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString) || n.NameUnsigned.Contains(SearchString)).ToList();
                 objHomeModel.ListCategory = objwebsiteBanHangEntities1.C2119110263_Category.ToList();
                 objHomeModel.ListBrand = objwebsiteBanHangEntities1.C2119110263_Brand.ToList();
                 return View(objHomeModel);
@@ -38,14 +38,14 @@ namespace WebsiteBanHang.Controllers
                 objHomeModel.ListProduct = objwebsiteBanHangEntities1.C2119110263_Product.ToList();
             }
 
-            lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
+            //lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
 
             // 4. Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
-            int pageSize = 5;
+            //int pageSize = 5;
 
             // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
             // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
-            int pageNumber = (page ?? 1);
+            //int pageNumber = (page ?? 1);
             return View(objHomeModel);
         }
 

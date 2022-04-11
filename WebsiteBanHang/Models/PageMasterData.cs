@@ -30,5 +30,7 @@ namespace WebsiteBanHang.Models
         [Display(Name = "Ngày cập nhật")]
         public Nullable<System.DateTime> UpdatedOnUtc { get; set; }
 
+        public string Slug { get; set; }
+
     }
 }

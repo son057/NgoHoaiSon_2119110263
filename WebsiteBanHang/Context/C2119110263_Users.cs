@@ -20,6 +20,5 @@ namespace WebsiteBanHang.Context
         public string Email { get; set; }
         public string Password { get; set; }
         public Nullable<bool> IsAdmin { get; set; }
-       
     }
 }

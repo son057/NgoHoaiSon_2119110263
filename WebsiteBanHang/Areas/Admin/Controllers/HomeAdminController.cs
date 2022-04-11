@@ -9,6 +9,7 @@ using WebsiteBanHang.Context;
 //using WebsiteBanHang.Context.Models;
 using System.Web.Script.Serialization;
 using WebsiteBanHang.Models;
+using System.Data;
 
 namespace WebsiteBanHang.Areas.Admin.Controllers
 {
@@ -150,5 +151,6 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             double slTV = objwebsiteBanHangEntities1.C2119110263_Users.Count();
             return slTV;
         }
+        
     }
 }
