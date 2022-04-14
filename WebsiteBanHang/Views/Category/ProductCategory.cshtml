@@ -1,4 +1,6 @@
-﻿@model WebsiteBanHang.Models.CategoryModel
+﻿
+
+@model WebsiteBanHang.Models.CategoryModel
 
 
 
@@ -50,7 +52,7 @@
                     </h6>
                     <div class="filter-content collapse show" id="collapse_2">
                         <div class="inner">
-                        @* Brand *@
+                            @* Brand *@
 
                             @foreach (var item in Model.ListBrand)
                             {
@@ -182,36 +184,36 @@
                             <div class="col-md-6">
                                 <div class="info-main">
 
-                                        @Html.RouteLink(item.Name, "XemChiTiet", new {@id=item.Id,@tensp=item.Slug }, null)
+                                    @Html.RouteLink(item.Name, "XemChiTiet", new { @id = item.Id, @tensp = item.Slug }, null)
 
-                                        <div class="rating-wrap mb-2">
-                                            <ul class="rating-stars">
-                                                <li style="width:100%" class="stars-active">
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                            <div class="label-rating">9/10</div>
-                                        </div> <!-- rating-wrap.// -->
+                                    <div class="rating-wrap mb-2">
+                                        <ul class="rating-stars">
+                                            <li style="width:100%" class="stars-active">
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </li>
+                                        </ul>
+                                        <div class="label-rating">9/10</div>
+                                    </div> <!-- rating-wrap.// -->
 
-                                        <p class="mb-3">
-                                            <span class="tag"> <i class="fa fa-check"></i> Verified</span>
-                                            <span class="tag"> 5 Years </span>
-                                            <span class="tag"> 80 reviews </span>
-                                            <span class="tag"> Russia </span>
-                                        </p>
+                                    <p class="mb-3">
+                                        <span class="tag"> <i class="fa fa-check"></i> Verified</span>
+                                        <span class="tag"> 5 Years </span>
+                                        <span class="tag"> 80 reviews </span>
+                                        <span class="tag"> Russia </span>
+                                    </p>
 
-                                        <p>
-                                            @item.ShortDes
-                                        </p>
+                                    <p>
+                                        @item.ShortDes
+                                    </p>
 
-</div> <!-- info-main.// -->
+                                </div> <!-- info-main.// -->
                             </div> <!-- col.// -->
                             <aside class="col-sm-3">
                                 <div class="info-aside">
@@ -242,8 +244,8 @@
 
                 @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
 
-                @Html.PagedListPager(Model, page => Url.Action("AllProduct",
-                    new { page, currentFilter = ViewBag.CurrentFilter }))*@
+                    @Html.PagedListPager(Model, page => Url.Action("AllProduct",
+                        new { page, currentFilter = ViewBag.CurrentFilter }))*@
 
                 <nav class="mb-4" aria-label="Page navigation sample">
                     <ul class="pagination">

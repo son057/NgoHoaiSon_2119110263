@@ -3,7 +3,8 @@
 @using (Html.BeginForm("Edit", "Brand", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+    @Html.HiddenFor(model => model.Avatar)
+
     <div class="form-horizontal">
         <h4>Sửa thương hiệu</h4>
         <hr />

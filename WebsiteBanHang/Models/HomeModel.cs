@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,5 +21,7 @@ namespace WebsiteBanHang.Models
         public List<C2119110263_Order> ListOrder { get; set; }
 
         public List<C2119110263_OrderDetail> ListOrderDetail { get; set; }
+
+        
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebsiteBanHang.Context;
+using WebsiteBanHang.Library;
 
 namespace WebsiteBanHang.Areas.Admin.Controllers
 {
@@ -29,7 +30,8 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         {
                 try
                 {
-                    if (objCategory.ImageUpLoad != null)
+                objCategory.Slug = XString.Str_Slug(objCategory.Name);
+                if (objCategory.ImageUpLoad != null)
                     {
                         string fileName = Path.GetFileNameWithoutExtension(objCategory.ImageUpLoad.FileName);
                         string extension = Path.GetExtension(objCategory.ImageUpLoad.FileName);

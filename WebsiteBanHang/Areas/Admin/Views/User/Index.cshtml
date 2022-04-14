@@ -41,35 +41,35 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.FirstName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.LastName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Email)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Password)
-                                    </td>
-                                    <td>
-                                        @if (item.IsAdmin== true)
-                                        {
-                                            <p>Quản Trị Viên</p>
-                                        }
-                                        else
-                                        {
-                                            <p>Thành Viên</p>
-                                        }
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "User", new { id = item.Id })> <i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger mx-1" href=@Url.Action("Details", "User", new { id = item.Id })> <i class="fa fa-info"></i></a>
-                                        <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "User", new { id = item.Id })><i class="fa fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FirstName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LastName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Password)
+                                        </td>
+                                        <td>
+                                            @if (item.IsAdmin == true)
+                                            {
+                                                <p>Quản Trị Viên</p>
+                                            }
+                                            else
+                                            {
+                                                <p>Thành Viên</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "User", new { id = item.Id })> <i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-danger mx-1" href=@Url.Action("Details", "User", new { id = item.Id })> <i class="fa fa-info"></i></a>
+                                            <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "User", new { id = item.Id })><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>

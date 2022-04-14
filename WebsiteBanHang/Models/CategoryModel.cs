@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,5 +16,7 @@ namespace WebsiteBanHang.Models
         public List<C2119110263_Brand> ListBrand { get; set; }
 
         public List<C2119110263_Page> ListPage { get; set; }
+
+        public IPagedList<C2119110263_Product> lstProduct { get; set; }
     }
 }

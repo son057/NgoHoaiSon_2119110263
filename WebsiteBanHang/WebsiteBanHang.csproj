@@ -355,6 +355,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Library\XString.cs" />
     <Compile Include="Models\BrandMasterData.cs" />
     <Compile Include="Models\BrandModel.cs" />
     <Compile Include="Models\CartModel.cs" />
@@ -2731,7 +2732,6 @@
     <Content Include="Scripts\ckeditor\styles.js" />
     <Content Include="Scripts\ckeditor\vendor\promise.js" />
     <Content Include="Scripts\controllers\cartController.js" />
-    <Content Include="Scripts\controllers\homeController.js" />
     <Content Include="Scripts\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\js\jquery-2.0.0.min.js" />
     <Content Include="Scripts\js\script.js" />
@@ -2974,7 +2974,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Library\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

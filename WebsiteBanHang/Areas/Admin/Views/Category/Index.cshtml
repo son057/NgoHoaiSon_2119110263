@@ -9,14 +9,14 @@
         <div class="col-md-4">
             <input type="text" class="form-control" id="txtNameS" placeholder="Type name" />
         </div>-->
-        @*<div class="col-md-4">
-            <select class="form-control" id="ddlStatusS">
-                <option value="">All</option>
-                <option value="true">Active</option>
-                <option value="false">Locked</option>
-            </select>
-        </div>*@
-        <!--<div class="col-md-4">
+@*<div class="col-md-4">
+        <select class="form-control" id="ddlStatusS">
+            <option value="">All</option>
+            <option value="true">Active</option>
+            <option value="false">Locked</option>
+        </select>
+    </div>*@
+<!--<div class="col-md-4">
             <button class="btn btn-primary" id="btnSearch">Search</button>
             <button class="btn btn-default" id="btnReset">Reset</button>
         </div>
@@ -32,12 +32,12 @@
                 <div class="card">
                     <div class="card-header d-flex">
                         <h3 class="card-title flex-fill">Quản lý loại sản phẩm</h3>
-                        @Html.ActionLink("Create New", "Create")
+                        @Html.ActionLink("Thêm danh mục", "Create")
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
 
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>
@@ -65,36 +65,43 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Name)
-                                    </td>
-                                    <td>
-                                        <img style="width:8em" src="~/Content/images/category/@item.Avartar" alt="Alternate Text" />
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            <img style="width:8em" src="~/Content/images/category/@item.Avartar" alt="Alternate Text" />
 
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Slug)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.ShowOnHomePage)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DisplayOrder)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Deleted)
-                                    </td>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Slug)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ShowOnHomePage)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DisplayOrder)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Deleted)
+                                        </td>
 
-                                    <td>
-                                        <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "Category", new { id = item.Id })> <i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger mx-1" href=@Url.Action("Details", "Category", new { id = item.Id })> <i class="fas fa-info"></i></a>
-                                        <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "Category", new { id = item.Id })><i class="fas fa-trash"></i></a>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "Category", new { id = item.Id })> <i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-danger mx-1" href=@Url.Action("Details", "Category", new { id = item.Id })> <i class="fas fa-info"></i></a>
+                                            <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "Category", new { id = item.Id })><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
+                        <script>
+                            $(document).ready(function () {
+                                $('#example').DataTable({
+                                    "pagingType": "full_numbers"
+                                });
+                            });
+                        </script>
                     </div>
                     <!-- /.card-body -->
                 </div>

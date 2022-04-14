@@ -95,11 +95,19 @@ namespace WebsiteBanHang.Controllers
         public ActionResult Payment(string shipName, string mobile, string address, string email)
         {
             var order = new C2119110263_Order();
-            order.CreatedOnUtc = DateTime.Now;
-            order.Address = address;
-            order.ShipMobile = mobile;
-            order.ShipName = shipName;
-            order.Email = email;
+            var cart = (List<CartModel>)Session["cart"];
+            foreach (var item in cart)
+            {
+                order.Name = shipName;
+                order.UserId = 1;
+                order.Price = item.C2119110263_Product.Price;
+                order.Status = 1;
+                order.CreatedOnUtc = DateTime.Now;
+                order.Address = address;
+                order.ShipMobile = mobile;
+                order.ShipName = shipName;
+                order.Email = email;
+            }
 
             try
             {
@@ -109,7 +117,7 @@ namespace WebsiteBanHang.Controllers
                 objWebsiteBanHangEntities1.SaveChanges();
                 var id = order.Id;
 
-                var cart = (List<CartModel>)Session["cart"];
+                //var cart = (List<CartModel>)Session["cart"];
 
                 decimal total = 0;
                 foreach (var item in cart)

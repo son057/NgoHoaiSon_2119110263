@@ -11,6 +11,7 @@ using PagedList;
 using PagedList.Mvc;
 using WebsiteBanHang.Context;
 using ClosedXML.Excel;
+using WebsiteBanHang.Library;
 
 namespace WebsiteBanHang.Areas.Admin.Controllers
 {
@@ -66,6 +67,8 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             {
                 try
                 {
+                    //Xử lý thêm thông tin
+                    objProduct.Slug = XString.Str_Slug(objProduct.Name);
                     if (objProduct.ImageUpLoad != null)
                     {
                         string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpLoad.FileName);
@@ -75,6 +78,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
                         objProduct.ImageUpLoad.SaveAs(Path.Combine(Server.MapPath("~/Content/images/items/"), fileName));
                     }
                     objProduct.CreatedOnUtc = DateTime.Now;
+                    objProduct.Deleted = false;
                     objWebsiteBanHangEntities1.C2119110263_Product.Add(objProduct);
                     objWebsiteBanHangEntities1.SaveChanges();
                     return RedirectToAction("Index");
@@ -117,6 +121,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            this.LoadData();
             var objProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Id == id).FirstOrDefault();
             return View(objProduct);
         }
@@ -126,6 +131,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(C2119110263_Product objProduct)
         {
+            //this.LoadData();
             if (objProduct.ImageUpLoad != null)
             {
                 string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpLoad.FileName);
@@ -134,7 +140,9 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
                 objProduct.Avatar = fileName;
                 objProduct.ImageUpLoad.SaveAs(Path.Combine(Server.MapPath("~/Content/images/items/"), fileName));
             }
-            objProduct.CreatedOnUtc = DateTime.Now;
+
+            objProduct.UpdatedOnUtc = DateTime.Now;
+            objProduct.Deleted = false;
             objWebsiteBanHangEntities1.Entry(objProduct).State = EntityState.Modified;
             objWebsiteBanHangEntities1.SaveChanges();
             return RedirectToAction("Index");
