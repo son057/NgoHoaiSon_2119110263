@@ -33,6 +33,16 @@
           <Property Name="CreatedOnUtc" Type="datetime" />
           <Property Name="UpdatedOnUtc" Type="datetime" />
         </EntityType>
+        <EntityType Name="2119110263_Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Contact" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="2119110263_Order">
           <Key>
             <PropertyRef Name="Id" />
@@ -109,10 +119,12 @@
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="IsAdmin" Type="bit" />
+          <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="WebsiteBanHangModel1StoreContainer">
           <EntitySet Name="2119110263_Brand" EntityType="Self.2119110263_Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_Category" EntityType="Self.2119110263_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="2119110263_Contact" EntityType="Self.2119110263_Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_Order" EntityType="Self.2119110263_Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_OrderDetail" EntityType="Self.2119110263_OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_Page" EntityType="Self.2119110263_Page" Schema="dbo" store:Type="Tables" />
@@ -200,6 +212,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="ResetPasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="WebsiteBanHangEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C2119110263_Brand" EntityType="Self.C2119110263_Brand" />
@@ -209,6 +222,7 @@
           <EntitySet Name="C2119110263_Users" EntityType="Self.C2119110263_Users" />
           <EntitySet Name="C2119110263_OrderDetail" EntityType="WebsiteBanHangModel1.C2119110263_OrderDetail" />
           <EntitySet Name="C2119110263_Page" EntityType="WebsiteBanHangModel1.C2119110263_Page" />
+          <EntitySet Name="C2119110263_Contact" EntityType="WebsiteBanHangModel1.C2119110263_Contact" />
         </EntityContainer>
         <EntityType Name="C2119110263_OrderDetail">
           <Key>
@@ -236,6 +250,16 @@
           <Property Name="FullDess" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Slug" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="C2119110263_Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -317,6 +341,7 @@
           <EntitySetMapping Name="C2119110263_Users">
             <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Users">
               <MappingFragment StoreEntitySet="2119110263_Users">
+                <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -350,6 +375,17 @@
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="ShortDes" ColumnName="ShortDes" />
                 <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C2119110263_Contact">
+            <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Contact">
+              <MappingFragment StoreEntitySet="2119110263_Contact">
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

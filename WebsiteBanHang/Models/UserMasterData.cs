@@ -30,6 +30,9 @@ namespace WebsiteBanHang.Models
         [Required]
         [Display(Name = "Loại Thành Viên")]
         public Nullable<bool> IsAdmin { get; set; }
+        public string ResetPasswordCode { get; set; }
+
+        //public string ConfirmPassword { get; set; }
 
         //[Required]
         //public Nullable<bool> Sex { get; set; }

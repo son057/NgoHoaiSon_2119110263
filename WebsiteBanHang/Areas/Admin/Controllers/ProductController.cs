@@ -20,8 +20,17 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         WebsiteBanHangEntities2 objWebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
 
         // GET: Admin/Product
-        public ActionResult Index(string currentFilter, string SearchString, int? page)
+        public ActionResult Index(string currentFilter, string SearchString, int? page,string sortOrder)
         {
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
+            ViewBag.PriceDiscountSortParm = sortOrder == "PriceDiscount" ? "PriceDiscount_desc" : "PriceDiscount";
+            
+
+
+            var emp = from e in objWebsiteBanHangEntities1.C2119110263_Product select e;
+            
+
             var lstProduct = new List<C2119110263_Product>();
             if (SearchString !=null)
             {
@@ -34,22 +43,43 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             if (!string.IsNullOrEmpty(SearchString))
             {
                 //lấy ds sản phẩm theo từ khóa tìm kiếm
-                lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString) || n.NameUnsigned.Contains(SearchString)).ToList();
+                emp = objWebsiteBanHangEntities1.C2119110263_Product.Where(e => e.Name.Contains(SearchString) || e.NameUnsigned.Contains(SearchString));
+                emp = emp.OrderByDescending(e => e.Id);
             }
             else
             {
                 //lấy all sản phẩm trong bảng product
-                lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where( n=> n.Deleted == false).ToList();
+                emp = objWebsiteBanHangEntities1.C2119110263_Product.Where(e=> e.Deleted == false);
+
             }
             ViewBag.CurrentFilter = SearchString;
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            //sắp xếp theo id sản phẩm, sp mới đưa lên đầu
-            lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
+            //sắp xếp sản phẩm theo Tên, Giá, Giảm Giá
 
-            //var lstProduct = objwebsiteBanHangEntities1.C2119110263_Product.ToList();
-            //var lstProduct = objwebsiteBanHangEntities1.C2119110263_Product.Where(n=>n.Name.Contains(SearchString)).ToList();
-            return View(lstProduct.ToPagedList(pageNumber, pageSize));
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    emp = emp.OrderByDescending(e => e.Name);
+                    break;
+                case "Price":
+                    emp = emp.OrderBy(e => e.Price);
+                    break;
+                case "Price_desc":
+                    emp = emp.OrderByDescending(e => e.Price);
+                    break;
+                case "PriceDiscount":
+                    emp = emp.OrderBy(e => e.PriceDiscount);
+                    break;
+                case "PriceDiscount_desc":
+                    emp = emp.OrderByDescending(e => e.PriceDiscount);
+                    break;
+                default:
+                    emp = emp.OrderByDescending(e => e.Id);
+                    break;
+            }
+
+            return View(emp.ToPagedList(pageNumber, pageSize));
         }
         [HttpGet]
         public ActionResult Create()
@@ -67,7 +97,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             {
                 try
                 {
-                    //Xử lý thêm thông tin
+                    //Xử lý thêm Slug
                     objProduct.Slug = XString.Str_Slug(objProduct.Name);
                     if (objProduct.ImageUpLoad != null)
                     {

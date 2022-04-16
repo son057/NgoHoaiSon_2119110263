@@ -69,4 +69,11 @@ namespace WebsiteBanHang.Context
     {
        
     }
+
+    [MetadataType(typeof(ContactMasterData))]
+
+    public partial class C2119110263_Contact
+    {
+
+    }
 }

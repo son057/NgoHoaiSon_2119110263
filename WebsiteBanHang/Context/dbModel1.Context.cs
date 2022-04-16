@@ -32,5 +32,6 @@ namespace WebsiteBanHang.Context
         public virtual DbSet<C2119110263_Users> C2119110263_Users { get; set; }
         public virtual DbSet<C2119110263_OrderDetail> C2119110263_OrderDetail { get; set; }
         public virtual DbSet<C2119110263_Page> C2119110263_Page { get; set; }
+        public virtual DbSet<C2119110263_Contact> C2119110263_Contact { get; set; }
     }
 }

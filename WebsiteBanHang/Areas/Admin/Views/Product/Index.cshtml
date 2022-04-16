@@ -277,7 +277,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
+                                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.FirstOrDefault().Avatar)
@@ -290,10 +290,10 @@
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.FirstOrDefault().Price)
+                                    @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm })
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.FirstOrDefault().PriceDiscount)
+                                    @Html.ActionLink("PriceDiscount", "Index", new { sortOrder = ViewBag.PriceDiscountSortParm })
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.FirstOrDefault().TypeId)

@@ -94,69 +94,76 @@ namespace WebsiteBanHang.Controllers
         [HttpPost]
         public ActionResult Payment(string shipName, string mobile, string address, string email)
         {
-            var order = new C2119110263_Order();
-            var cart = (List<CartModel>)Session["cart"];
-            foreach (var item in cart)
+            if(Session["idUser"] == null)
             {
-                order.Name = shipName;
-                order.UserId = 1;
-                order.Price = item.C2119110263_Product.Price;
-                order.Status = 1;
-                order.CreatedOnUtc = DateTime.Now;
-                order.Address = address;
-                order.ShipMobile = mobile;
-                order.ShipName = shipName;
-                order.Email = email;
+                return RedirectToAction("Login", "Home");
             }
-
-            try
+            else
             {
-
-                //Thêm Order               
-                objWebsiteBanHangEntities1.C2119110263_Order.Add(order);
-                objWebsiteBanHangEntities1.SaveChanges();
-                var id = order.Id;
-
-                //var cart = (List<CartModel>)Session["cart"];
-
-                decimal total = 0;
+                var order = new C2119110263_Order();
+                var cart = (List<CartModel>)Session["cart"];
                 foreach (var item in cart)
                 {
-                    var orderDetail = new C2119110263_OrderDetail();
-                    orderDetail.ProductId = item.C2119110263_Product.Id;
-                    orderDetail.OrderId = id;
-                    orderDetail.Price = item.C2119110263_Product.Price;
-                    orderDetail.Quantity = item.Quantity;
-                    objWebsiteBanHangEntities1.C2119110263_OrderDetail.Add(orderDetail);
-                    objWebsiteBanHangEntities1.SaveChanges();
-                    total += Convert.ToDecimal(item.C2119110263_Product.PriceDiscount.GetValueOrDefault(0) * item.Quantity);
+                    order.Name = shipName;
+                    order.UserId = 3;
+                    order.Price = item.C2119110263_Product.Price;
+                    order.Status = 1;
+                    order.CreatedOnUtc = DateTime.Now;
+                    order.Address = address;
+                    order.ShipMobile = mobile;
+                    order.ShipName = shipName;
+                    order.Email = email;
                 }
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
 
-                content = content.Replace("{{CustomerName}}", shipName);
-                content = content.Replace("{{Phone}}", mobile);
-                content = content.Replace("{{Email}}", email);
-                content = content.Replace("{{Address}}", address);
-                content = content.Replace("{{Total}}", total.ToString("N0"));
-                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                try
+                {
 
-                // Để Gmail cho phép SmtpClient kết nối đến server SMTP của nó với xác thực 
-                //là tài khoản gmail của bạn, bạn cần thiết lập tài khoản email của bạn như sau:
-                //Vào địa chỉ https://myaccount.google.com/security  Ở menu trái chọn mục Bảo mật, sau đó tại mục Quyền truy cập 
-                //của ứng dụng kém an toàn phải ở chế độ bật
-                //  Đồng thời tài khoản Gmail cũng cần bật IMAP
-                //Truy cập địa chỉ https://mail.google.com/mail/#settings/fwdandpop
+                    //Thêm Order               
+                    objWebsiteBanHangEntities1.C2119110263_Order.Add(order);
+                    objWebsiteBanHangEntities1.SaveChanges();
+                    var id = order.Id;
 
-                new MailHelper().SendMail(email, "Đơn hàng mới", content);
-                new MailHelper().SendMail(toEmail, "Đơn hàng mới", content);
-                //Xóa hết giỏ hàng
-                Session["cart"] = null;
-            }
-            catch (Exception ex)
-            {
-                //ghi log
-                return Redirect("/Cart/UnSuccess");
-            }
+                    //var cart = (List<CartModel>)Session["cart"];
+
+                    decimal total = 0;
+                    foreach (var item in cart)
+                    {
+                        var orderDetail = new C2119110263_OrderDetail();
+                        orderDetail.ProductId = item.C2119110263_Product.Id;
+                        orderDetail.OrderId = id;
+                        orderDetail.Price = item.C2119110263_Product.Price;
+                        orderDetail.Quantity = item.Quantity;
+                        objWebsiteBanHangEntities1.C2119110263_OrderDetail.Add(orderDetail);
+                        objWebsiteBanHangEntities1.SaveChanges();
+                        total += Convert.ToDecimal(item.C2119110263_Product.PriceDiscount.GetValueOrDefault(0) * item.Quantity);
+                    }
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/neworder.html"));
+
+                    content = content.Replace("{{CustomerName}}", shipName);
+                    content = content.Replace("{{Phone}}", mobile);
+                    content = content.Replace("{{Email}}", email);
+                    content = content.Replace("{{Address}}", address);
+                    content = content.Replace("{{Total}}", total.ToString("N0"));
+                    var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+
+                    // Để Gmail cho phép SmtpClient kết nối đến server SMTP của nó với xác thực 
+                    //là tài khoản gmail của bạn, bạn cần thiết lập tài khoản email của bạn như sau:
+                    //Vào địa chỉ https://myaccount.google.com/security  Ở menu trái chọn mục Bảo mật, sau đó tại mục Quyền truy cập 
+                    //của ứng dụng kém an toàn phải ở chế độ bật
+                    //  Đồng thời tài khoản Gmail cũng cần bật IMAP
+                    //Truy cập địa chỉ https://mail.google.com/mail/#settings/fwdandpop
+
+                    new MailHelper().SendMail(email, "Đơn hàng mới", content);
+                    new MailHelper().SendMail(toEmail, "Đơn hàng mới", content);
+                    //Xóa hết giỏ hàng
+                    Session["cart"] = null;
+                }
+                catch (Exception ex)
+                {
+                    //ghi log
+                    return Redirect("/Cart/UnSuccess");
+                }
+            }    
             return Redirect("/Cart/Success");
         }
 

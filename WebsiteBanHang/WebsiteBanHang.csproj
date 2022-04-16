@@ -305,6 +305,9 @@
     <Compile Include="Context\C2119110263_Category.cs">
       <DependentUpon>dbModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\C2119110263_Contact.cs">
+      <DependentUpon>dbModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\C2119110263_Order.cs">
       <DependentUpon>dbModel1.tt</DependentUpon>
     </Compile>
@@ -361,11 +364,13 @@
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CategoryMasterData.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\ContactMasterData.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\OrderMasterData.cs" />
     <Compile Include="Models\PageMasterData.cs" />
     <Compile Include="Models\PartialMetadataType.cs" />
     <Compile Include="Models\ProductMasterData.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\UserMasterData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProperyInfo.cs" />
@@ -2970,6 +2975,10 @@
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
     <Content Include="Views\Cart\UnSuccess.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\ResetPassword.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,10 +14,23 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
     {
         WebsiteBanHangEntities2 objwebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         // GET: Admin/Category
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            var lstCategory = objwebsiteBanHangEntities1.C2119110263_Category.ToList();
-            return View(lstCategory);
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            var emp = from e in objwebsiteBanHangEntities1.C2119110263_Category select e;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    emp = emp.OrderByDescending(e => e.Name);
+                    break;
+                default:
+                    emp = emp.OrderBy(e => e.Name);
+                    break;
+            }
+
+            //var lstCategory = objwebsiteBanHangEntities1.C2119110263_Category.ToList();
+            return View(emp.ToList());
         }
 
         [HttpGet]
