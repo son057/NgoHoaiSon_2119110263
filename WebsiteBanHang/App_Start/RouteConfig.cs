@@ -76,7 +76,7 @@ namespace WebsiteBanHang
               namespaces: new[] { "WebsiteBanHang.Controllers" }
           );
 
-           
+
 
 
             routes.MapRoute(

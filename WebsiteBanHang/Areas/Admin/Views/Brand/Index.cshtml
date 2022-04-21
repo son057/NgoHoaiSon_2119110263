@@ -30,6 +30,10 @@
 
         @foreach (var item in Model)
         {
+            var slg = item.Slug;
+            var url_details = "/dashboard/chi-tiet-thuong-hieu/" + slg + "-" + item.Id;
+            var url_edits = "/dashboard/sua-thuong-hieu/" + slg + "-" + item.Id;
+            var url_deletes = "/dashboard/xoa-thuong-hieu/" + slg + "-" + item.Id;
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
@@ -47,9 +51,9 @@
 
 
                 <td>
-                    <a class="btn btn-danger mx-1" href=@Url.Action("Edit", "Brand", new { id = item.Id })> <i class="fas fa-edit"></i></a>
-                    <a class="btn btn-danger mx-1" href=@Url.Action("Details", "Brand", new { id = item.Id })> <i class="fa fa-info"></i></a>
-                    <a class="btn btn-danger mx-1" href=@Url.Action("Delete", "Brand", new { id = item.Id })><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-danger mx-1" href=@url_edits> <i class="fas fa-edit"></i></a>
+                    <a class="btn btn-danger mx-1" href=@url_details> <i class="fa fa-info"></i></a>
+                    <a class="btn btn-danger mx-1" href=@url_deletes><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         }

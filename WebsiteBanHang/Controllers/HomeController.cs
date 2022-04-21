@@ -227,7 +227,7 @@ namespace WebsiteBanHang.Controllers
             var verifyUrl = "/Home/" + emailFor + "/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("son0128525@gmail.com", "Dotnet Awesome");
+            var fromEmail = new MailAddress("son0128525@gmail.com", "ADMIN");
             var toEmail = new MailAddress(email);
             var fromEmailPassword = "son123456#"; // Replace with actual password
 
@@ -242,9 +242,9 @@ namespace WebsiteBanHang.Controllers
             }
             else if (emailFor == "ResetPassword")
             {
-                subject = "Reset Password";
-                body = "Hi,<br/>br/>We got request for reset your account password. Please click on the below link to reset your password" +
-                    "<br/><br/><a href=" + link + ">Reset Password link</a>";
+                subject = "Đặt lại mật khẩu";
+                body = "Xin chào,<br/>br/>Bạn có muốn thiết lập lại mật khẩu không. Vui lòng kích vào đường dẫn bên dưới" +
+                    "<br/><br/><a href=" + link + ">Thiết lập là mật khẩu</a>";
             }
 
 
@@ -295,7 +295,7 @@ namespace WebsiteBanHang.Controllers
                     //in our model class in part 1
                     objwebsiteBanHangEntities1.Configuration.ValidateOnSaveEnabled = false;
                     objwebsiteBanHangEntities1.SaveChanges();
-                    message = "Reset password link has been sent to your email id.";
+                    message = "Liên kết đặt lại mật khẩu đã được gửi đến email của bạn";
                 }
                 else
                 {
@@ -352,7 +352,7 @@ namespace WebsiteBanHang.Controllers
                         user.ResetPasswordCode = "";
                         objwebsiteBanHangEntities1.Configuration.ValidateOnSaveEnabled = false;
                         objwebsiteBanHangEntities1.SaveChanges();
-                        message = "New password updated successfully";
+                        message = "Mật khẩu mới đã được cập nhật thành công";
                     }
                 }
             }
