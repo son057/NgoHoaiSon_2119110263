@@ -12,7 +12,9 @@
         <nav class="row">
             @foreach (var item in Model)
             {
-                
+                var slg = item.Slug;var id = item.Id;
+
+                var url_productbrand = "/thuonghieu/" +slg +"-"+ id;
                 <div class="col-md-3">
 
                     <div class="card card-brand">
@@ -20,7 +22,7 @@
                             <img src="~/Content/images/brand/@item.Avatar">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title"><a href="@Url.Action("ProductBrand", "Brand", new { Id = item.Id })">@item.Name</a></h4>
+                            <h4 class="card-title"><a href="@url_productbrand">@item.Name</a></h4>
 
                         </div>
                     </div>

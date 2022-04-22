@@ -54,12 +54,18 @@ namespace WebsiteBanHang
             routes.MapRoute(
               name: "lienhe",
               url: "lien-he",
-              defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+              defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional },
               namespaces: new[] { "WebsiteBanHang.Controllers" }
           );
 
 
-           
+            routes.MapRoute(
+               name: "productall",
+               url: "san-pham",
+               defaults: new { controller = "Product", action = "AllProduct", id = UrlParameter.Optional },
+               namespaces: new[] { "WebsiteBanHang.Controllers" }
+           );
+
             //Cấu hình đường dẫn trang xem thương hiệu
             routes.MapRoute(
               name: "thuonghieu",
@@ -67,6 +73,22 @@ namespace WebsiteBanHang
               defaults: new { controller = "Brand", action = "Brand", id = UrlParameter.Optional },
               namespaces: new[] { "WebsiteBanHang.Controllers" }
           );
+
+
+            routes.MapRoute(
+              name: "productbrand",
+              url: "thuonghieu/{slg}-{id}",
+              defaults: new { controller = "Brand", action = "ProductBrand", id = UrlParameter.Optional },
+              namespaces: new[] { "WebsiteBanHang.Controllers" }
+          );
+
+
+            routes.MapRoute(
+             name: "content",
+             url: "tin-tuc/{slg}-{id}",
+             defaults: new { controller = "Content", action = "DetailPage", id = UrlParameter.Optional },
+             namespaces: new[] { "WebsiteBanHang.Controllers" }
+         );
 
 
             routes.MapRoute(
