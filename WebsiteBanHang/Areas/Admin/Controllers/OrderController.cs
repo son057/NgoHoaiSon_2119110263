@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,11 +16,39 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
     {
         WebsiteBanHangEntities2 objwebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         // GET: Admin/Order
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, int? page, string SearchString = "")
         {
+            var lstOrder = new List<C2119110263_Order>();
+
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                //lấy ds sản phẩm theo từ khóa tìm kiếm
+                lstOrder = objwebsiteBanHangEntities1.C2119110263_Order.Where(n => n.Name.Contains(SearchString)).ToList();
+
+            }
+            else
+            {
+                //lấy all sản phẩm trong bảng brand
+                lstOrder = objwebsiteBanHangEntities1.C2119110263_Order.ToList();
+
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            lstOrder = lstOrder.OrderByDescending(n => n.Id).ToList();
             //this.LoadData();
-            var lstOrder = objwebsiteBanHangEntities1.C2119110263_Order.ToList();
-            return View(lstOrder);
+            
+            return View(lstOrder.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

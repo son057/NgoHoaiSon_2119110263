@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
@@ -14,11 +15,37 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
     {
         WebsiteBanHangEntities2 objwebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         // GET: Admin/Category
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string currentFilter,string SearchString, int? page,string sortOrder)
         {
             ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
             var emp = from e in objwebsiteBanHangEntities1.C2119110263_Category select e;
+            
+
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                //lấy ds sản phẩm theo từ khóa tìm kiếm
+                emp = objwebsiteBanHangEntities1.C2119110263_Category.Where(e => e.Name.Contains(SearchString) || e.Slug.Contains(SearchString));
+                emp = emp.OrderByDescending(e => e.Id);
+            }
+            else
+            {
+                //lấy all sản phẩm trong bảng product
+                emp = objwebsiteBanHangEntities1.C2119110263_Category;
+
+            }
+            ViewBag.CurrentFilter = SearchString;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
             switch (sortOrder)
             {
                 case "name_desc":
@@ -30,7 +57,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             }
 
             //var lstCategory = objwebsiteBanHangEntities1.C2119110263_Category.ToList();
-            return View(emp.ToList());
+            return View(emp.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

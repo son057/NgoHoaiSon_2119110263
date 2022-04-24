@@ -20,14 +20,16 @@ namespace WebsiteBanHang.Models
         public string LastName{ get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập email")]
-        
+        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
+        ErrorMessage = "Vui lòng nhập email hợp lệ")]
+
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
         [Display(Name = "Mật Khẩu")]
         public string Password { get; set; }
 
-        [Required]
+      
         [Display(Name = "Loại Thành Viên")]
         public Nullable<bool> IsAdmin { get; set; }
         public string ResetPasswordCode { get; set; }

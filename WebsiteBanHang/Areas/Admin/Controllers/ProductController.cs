@@ -162,6 +162,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         public ActionResult Edit(C2119110263_Product objProduct)
         {
             //this.LoadData();
+            objProduct.Slug = XString.Str_Slug(objProduct.Name);
             if (objProduct.ImageUpLoad != null)
             {
                 string fileName = Path.GetFileNameWithoutExtension(objProduct.ImageUpLoad.FileName);

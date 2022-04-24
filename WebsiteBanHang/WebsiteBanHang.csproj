@@ -358,6 +358,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\PagedData.cs" />
+    <Compile Include="Helper\Pagination.cs" />
     <Compile Include="Library\XString.cs" />
     <Compile Include="Models\BrandMasterData.cs" />
     <Compile Include="Models\BrandModel.cs" />

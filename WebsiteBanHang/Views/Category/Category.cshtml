@@ -14,6 +14,8 @@
         <nav class="row">
             @foreach (var item in Model)
             {
+                var slg = item.Slug; var id = item.Id;
+                var url_category = "/loai-san-pham/" + slg + "-" + id;
                 <div class="col-md-3">
 
                     <div class="card card-category">
@@ -22,7 +24,7 @@
 
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title"><a href="@Url.Action("ProductCategory", "Category", new { Id = item.Id })">@item.Name</a></h4>
+                            <h4 class="card-title"><a href="@url_category">@item.Name</a></h4>
                             <ul class="list-menu">
                                 <li><a>Lựa sách mà đọc cũng như lựa bạn mà chơi. Hãy coi chừng bạn giả.</a></li>
                                 <li><a>Gặp được một quyển sách hay, nên mua liền dù đọc được hay không đọc được, vì sớm muộn gì cũng cần đến nó </a></li>

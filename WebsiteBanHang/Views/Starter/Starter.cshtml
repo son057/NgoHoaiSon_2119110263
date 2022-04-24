@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+
 }
 
 <!DOCTYPE HTML>
@@ -37,7 +38,9 @@
     <header class="section-header">
         <section class="header-main border-bottom">
             <div class="container">
-                <a href="http://bootstrap-ecommerce.com" class="brand-wrap"><img class="logo" src="~/Content/images/logo.png"></a>
+                <a href="@Url.Action("Index", "Home")" class="brand-wrap">
+                    <img class="logo" src="~/Content/images/logo.jpg">
+                </a> <!-- brand-wrap.// -->
             </div> <!-- container.// -->
         </section>
     </header> <!-- section-header.// -->
@@ -47,7 +50,7 @@
         <div class="container">
 
             <header class="section-heading">
-                <h2 class="section-title">Starter page </h2>
+                <h2 class="section-title">Về chúng tôi </h2>
             </header><!-- sect-heading -->
 
             <article>
@@ -78,10 +81,7 @@
     <footer class="section-footer border-top padding-y">
         <div class="container">
             <p class="float-md-right">
-                &copy Copyright 2019 All rights reserved
-            </p>
-            <p>
-                <a href="#">Terms and conditions</a>
+                &copy Copyright BookStore 2022
             </p>
         </div><!-- //container -->
     </footer>

@@ -7,6 +7,8 @@
 
 @*@Html.RouteLink("click", "dangnhap")*@
 
+
+
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-conten padding-y" style="min-height:84vh">
     <!-- ============================ COMPONENT LOGIN   ================================= -->
@@ -14,14 +16,15 @@
         <div class="card-body">
             <h4 class="card-title mb-4">Đăng Nhập</h4>
             @*<a href="https://www.facebook.com/" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>*@
-            @*<div class="col-md-offset-2 col-md-10">
-                <a class="btn btn-facebook" href="/Home/Facebook">
-                    <i class="fab fa-facebook-f"></i> &nbsp
-                    Đăng nhập bằng Facebook
-                </a>
-            </div>*@
-            @Html.ActionLink("Login with facebook","Facebook","Home")
+            <div class="btn btn-facebook btn-block mb-2">
+                    <a class="btn btn-facebook" href="/Home/Facebook">
+                        <i class="fab fa-facebook-f"></i> &nbsp
+                        Đăng nhập bằng Facebook
+                    </a>
+                </div>
+            @*@Html.ActionLink("Login with facebook", "Facebook", "Home")*@
             <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
+
             @using (Html.BeginForm("Login", "Home", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()

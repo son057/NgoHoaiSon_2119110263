@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
@@ -14,10 +15,38 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
     {
         WebsiteBanHangEntities2 objwebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         // GET: Admin/Page
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, int? page, string SearchString = "")
         {
-            var lstPage = objwebsiteBanHangEntities1.C2119110263_Page.ToList();
-            return View(lstPage);
+            var lstPage = new List<C2119110263_Page>();
+
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                //lấy ds sản phẩm theo từ khóa tìm kiếm
+                lstPage = objwebsiteBanHangEntities1.C2119110263_Page.Where(n => n.Name.Contains(SearchString) || n.Slug.Contains(SearchString)).ToList();
+
+            }
+            else
+            {
+                //lấy all sản phẩm trong bảng brand
+                lstPage = objwebsiteBanHangEntities1.C2119110263_Page.ToList();
+
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+            int pageSize = 14;
+            int pageNumber = (page ?? 1);
+            lstPage = lstPage.OrderByDescending(n => n.Id).ToList();
+            //lstPage = objwebsiteBanHangEntities1.C2119110263_Page.ToList();
+            return View(lstPage.ToPagedList(pageNumber, pageSize));
         }
 
 

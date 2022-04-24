@@ -38,6 +38,7 @@
                             <ul class="list-menu">
                                 @foreach (var item in Model.ListCategory)
                                 {
+
                                     <li><a href="@Url.Action("ProductCategory", "Category", new { Id = item.Id })">@item.Name  </a></li>
                                 }
 
@@ -239,13 +240,14 @@
                                 </div> <!-- info-aside.// -->
                             </aside> <!-- col.// -->
                         </div> <!-- row.// -->
-                    </article> <!-- card-product .// -->
+                    </article>
+                    <!-- card-product .// -->
                 }
 
                 @*Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)of @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("AllProduct",
-                        new { page, currentFilter = ViewBag.CurrentFilter }))*@
+        @Html.PagedListPager(Model, page => Url.Action("AllProduct",
+            new { page, currentFilter = ViewBag.CurrentFilter }))*@
 
                 <nav class="mb-4" aria-label="Page navigation sample">
                     <ul class="pagination">
@@ -298,3 +300,67 @@
     </div>
 </section>
 <!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+
+@*<script>
+    $(document).ready(function () {
+        //Initially load pagenumber=1
+        ProductCategory(1);
+    });
+    function ProductCategory(pageNum, pageSize) {
+        //After every trigger remove previous data and paging
+        $("#tblData").empty();
+        $("#paged").empty();
+        $.getJSON("/Category/ProductCategory", { pageNumber: pageNum, pageSize: pageSize }, function (response) {
+            var rowData = "";
+            for (var i = 0; i < response.Data.length; i++) {
+                rowData = rowData + '<tr><td>' + response.Data[i].Id + '</td><td>' + response.Data[i].Name + '</td></tr>';
+            }
+            $("#tblData").append(rowData);
+            PaggingTemplate(response.TotalPages, response.CurrentPage);
+        });
+    }
+    //This is paging temlpate ,you should just copy paste
+    function PaggingTemplate(totalPage, currentPage) {
+        var template = "";
+        var TotalPages = totalPage;
+        var CurrentPage = currentPage;
+        var PageNumberArray = Array();
+
+
+        var countIncr = 1;
+        for (var i = currentPage; i <= totalPage; i++) {
+            PageNumberArray[0] = currentPage;
+            if (totalPage != currentPage && PageNumberArray[countIncr - 1] != totalPage) {
+                PageNumberArray[countIncr] = i + 1;
+            }
+            countIncr++;
+        };
+        PageNumberArray = PageNumberArray.slice(0, 5);
+        var FirstPage = 1;
+        var LastPage = totalPage;
+        if (totalPage != currentPage) {
+            var ForwardOne = currentPage + 1;
+        }
+        var BackwardOne = 1;
+        if (currentPage > 1) {
+            BackwardOne = currentPage - 1;
+        }
+
+        template = "<p>" + CurrentPage + " of " + TotalPages + " pages</p>"
+        template = template + '<ul class="pager">' +
+            '<li class="previous"><a href="#" onclick="ProductCategory(' + FirstPage + ')"><i class="fa fa-fast-backward"></i>&nbsp;First</a></li>' +
+            '<li><select ng-model="pageSize" id="selectedId"><option value="20" selected>20</option><option value="50">50</option><option value="100">100</option><option value="150">150</option></select> </li>' +
+            '<li><a href="#" onclick="ProductCategory(' + BackwardOne + ')"><i class="glyphicon glyphicon-backward"></i></a>';
+
+        var numberingLoop = "";
+        for (var i = 0; i < PageNumberArray.length; i++) {
+            numberingLoop = numberingLoop + '<a class="page-number active" onclick="ProductCategory(' + PageNumberArray[i] + ')" href="#">' + PageNumberArray[i] + ' &nbsp;&nbsp;</a>'
+        }
+        template = template + numberingLoop + '<a href="#" onclick="ProductCategory(' + ForwardOne + ')" ><i class="glyphicon glyphicon-forward"></i></a></li>' +
+            '<li class="next"><a href="#" onclick="ProductCategory(' + LastPage + ')">Last&nbsp;<i class="fa fa-fast-forward"></i></a></li></ul>';
+        $("#paged").append(template);
+        $('#selectedId').change(function () {
+            ProductCategory(1, $(this).val());
+        });
+    }
+</script>*@

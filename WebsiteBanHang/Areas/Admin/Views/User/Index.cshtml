@@ -1,8 +1,20 @@
-﻿@model IEnumerable<WebsiteBanHang.Context.C2119110263_Users>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<WebsiteBanHang.Context.C2119110263_Users>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Index", "User", FormMethod.Get))
+{
+    <p>
+        Tìm tên tài khoản: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Tìm kiếm" />
+    </p>
 }
 
 

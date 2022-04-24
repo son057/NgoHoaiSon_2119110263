@@ -107,6 +107,7 @@ namespace WebsiteBanHang.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string email, string password)
         {
+            
             if (ModelState.IsValid)
             {
 
@@ -123,7 +124,8 @@ namespace WebsiteBanHang.Controllers
                 }
                 else
                 {
-                    ViewBag.error = "Login failed";
+                    
+                    ViewBag.message = "Login failed";
                     return RedirectToAction("Login");
                 }
             }
@@ -299,7 +301,7 @@ namespace WebsiteBanHang.Controllers
                 }
                 else
                 {
-                    message = "Account not found";
+                    message = "Tài khoản không tồn tại";
                 }
             }
             ViewBag.Message = message;
@@ -358,7 +360,7 @@ namespace WebsiteBanHang.Controllers
             }
             else
             {
-                message = "Something invalid";
+                message = "Không hợp lệ";
             }
             ViewBag.Message = message;
             return View(model);

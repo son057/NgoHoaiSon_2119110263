@@ -12,9 +12,37 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
     {
         WebsiteBanHangEntities2 objwebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
         // GET: Admin/User
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, int? page, string SearchString = "")
         {
-            var lstUser = objwebsiteBanHangEntities1.C2119110263_Users.ToList();
+            var lstUser = new List<C2119110263_Users>();
+
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                SearchString = currentFilter;
+            }
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                //lấy ds sản phẩm theo từ khóa tìm kiếm
+                lstUser = objwebsiteBanHangEntities1.C2119110263_Users.Where(n => n.LastName.Contains(SearchString)).ToList();
+
+            }
+            else
+            {
+                //lấy all sản phẩm trong bảng brand
+                lstUser = objwebsiteBanHangEntities1.C2119110263_Users.ToList();
+
+            }
+
+            ViewBag.CurrentFilter = SearchString;
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            lstUser = lstUser.OrderByDescending(n => n.Id).ToList();
+            
             return View(lstUser);
         }
 

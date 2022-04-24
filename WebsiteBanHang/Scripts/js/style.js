@@ -1,5 +1,5 @@
 ﻿//hien thị ảnh
-const input = document.querySelector("[name='ImageUpLoad']");
+const input = document.querySelector("[name='ImageUpload']");
 const image = document.querySelector("#avatar");
 
 if (input) {

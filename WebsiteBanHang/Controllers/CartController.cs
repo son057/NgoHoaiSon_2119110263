@@ -82,6 +82,10 @@ namespace WebsiteBanHang.Controllers
         [HttpGet]
         public ActionResult Payment()
         {
+            if (Session["idUser"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             var cart = Session["cart"];
             var list = new List<CartModel>();
             if (cart != null)
@@ -94,12 +98,7 @@ namespace WebsiteBanHang.Controllers
         [HttpPost]
         public ActionResult Payment(string shipName, string mobile, string address, string email)
         {
-            if(Session["idUser"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            else
-            {
+            
                 var order = new C2119110263_Order();
                 var cart = (List<CartModel>)Session["cart"];
                 foreach (var item in cart)
@@ -163,7 +162,6 @@ namespace WebsiteBanHang.Controllers
                     //ghi log
                     return Redirect("/Cart/UnSuccess");
                 }
-            }    
             return Redirect("/Cart/Success");
         }
 

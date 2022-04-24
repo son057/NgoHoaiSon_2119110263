@@ -58,6 +58,19 @@ namespace WebsiteBanHang
               namespaces: new[] { "WebsiteBanHang.Controllers" }
           );
 
+            routes.MapRoute(
+              name: "Category",
+              url: "loai-san-pham",
+              defaults: new { controller = "Category", action = "Category", id = UrlParameter.Optional },
+              namespaces: new[] { "WebsiteBanHang.Controllers" }
+          );
+
+            routes.MapRoute(
+             name: "ProductCategory",
+             url: "loai-san-pham/{slg}-{id}",
+             defaults: new { controller = "Category", action = "ProductCategory", id = UrlParameter.Optional },
+             namespaces: new[] { "WebsiteBanHang.Controllers" }
+         );
 
             routes.MapRoute(
                name: "productall",
@@ -65,6 +78,13 @@ namespace WebsiteBanHang
                defaults: new { controller = "Product", action = "AllProduct", id = UrlParameter.Optional },
                namespaces: new[] { "WebsiteBanHang.Controllers" }
            );
+
+            routes.MapRoute(
+              name: "productlist",
+              url: "list-san-pham",
+              defaults: new { controller = "Category", action = "ProductCategoryList", id = UrlParameter.Optional },
+              namespaces: new[] { "WebsiteBanHang.Controllers" }
+          );
 
             //Cấu hình đường dẫn trang xem thương hiệu
             routes.MapRoute(

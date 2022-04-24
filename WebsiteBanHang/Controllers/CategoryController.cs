@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebsiteBanHang.Context;
+using WebsiteBanHang.Helper;
 using WebsiteBanHang.Models;
 
 namespace WebsiteBanHang.Controllers
@@ -19,15 +20,15 @@ namespace WebsiteBanHang.Controllers
             return View(lstCategory);
         }
 
-        public ActionResult ProductCategory(string currentFilter, int? page,string SearchString="", int Id = 0)
+        public ActionResult ProductCategory(int pageNumber = 1, int pageSize = 20, string SearchString="", int Id = 0)
         {
             CategoryModel objCategoryModel = new CategoryModel();
-            List<C2119110263_Product> lstProduct = new List<C2119110263_Product>();
+            List<C2119110263_Product> lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.ToList();
             var lstCategory = objWebsiteBanHangEntities1.C2119110263_Category.ToList();
             var lstBrand = objWebsiteBanHangEntities1.C2119110263_Brand.ToList();
             if (SearchString != "")
             {
-                page = 1;
+                
                 objCategoryModel.ListProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.Name.Contains(SearchString) || n.NameUnsigned.Contains(SearchString)).ToList();
                 //objCategoryModel.Id = Id;               
                 objCategoryModel.ListCategory = lstCategory;
@@ -40,20 +41,21 @@ namespace WebsiteBanHang.Controllers
             }
             else
             {
-                SearchString = currentFilter;
+               
                 lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.Where(n => n.CategoryId == Id).ToList();
                 //objCategoryModel.Id = Id;
                 objCategoryModel.ListProduct = lstProduct;
                 objCategoryModel.ListCategory = lstCategory;
                 objCategoryModel.ListBrand = lstBrand;
                 ViewBag.CurrentFilter = SearchString;
-                int pageSize = 10;
-                int pageNumber = (page ?? 1);
+                
                 //sắp xếp theo id sản phẩm, sp mới đưa lên đầu
                 lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
             }
-            
-            
+
+            var pagedData = Pagination.PagedResult(lstProduct, pageNumber, pageSize);
+
+
             //objCategoryModel.ListProduct.Where(n => n.Name.Contains(SearchString)).ToList();
             return View(objCategoryModel);
         }

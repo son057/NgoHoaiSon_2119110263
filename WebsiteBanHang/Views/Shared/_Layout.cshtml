@@ -9,7 +9,7 @@
     <meta name="description" content="Bootstrap e-commerce html template similar to Alibaba">
     <meta name="keywords" content="Online template, shop, theme, template, html, css, bootstrap 4">
 
-    <title>Website title - bootstrap alistyle html template</title>
+    <title>Nhà sách trực tuyến BookStore</title>
 
     <link href="~/Content/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
@@ -74,10 +74,8 @@
                         <form action="@Url.Action("ProductCategory", "Category")" class="search-header">
                             <div class="input-group w-100">
                                 <select class="custom-select border-right" name="category_name">
-                                    <option value="">All type</option>
-                                    <option value="codex">Special</option>
-                                    <option value="comments">Only best</option>
-                                    <option value="content">Latest</option>
+                                    <option value="">Theo tên sản phẩm</option>
+                                    
                                 </select>
                                 @*<input type="text" class="form-control" placeholder="Search">*@
 
@@ -137,21 +135,21 @@
                                         <small class="text"> message </small>
                                     </a>
                                 </div>*@
-                            <div class="widget-header mr-3">
+                            @*<div class="widget-header mr-3">
                                 <a href="#" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-store"></i>
                                     </div>
                                     <small class="text"> Orders </small>
                                 </a>
-                            </div>
+                            </div>*@
                             <div class="widget-header">
                                 <a href="@Url.Action("Index","Cart")" class="widget-view">
                                     <div class="icon-area">
                                         <i class="fa fa-shopping-cart"></i>
                                         <span class="notify" id="CartCount">@Session["count"]</span>
                                     </div>
-                                    <small class="text"> Cart </small>
+                                    <small class="text"> Giỏ hàng </small>
                                 </a>
                             </div>
                         </div> <!-- widgets-wrap.// -->
@@ -173,11 +171,11 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-bars text-muted mr-2"></i> </a>
                             <div class="dropdown-menu dropdown-large">
-                                <nav class="row">
+                                
                                     <div class="col-6">
                                         <a href="@Url.Action("Index", "Home")">Trang Chủ</a>
                                         <a href="@Url.Action("Category", "Category")">Tất cả các loại sản phẩm</a>
-                                        <a href="@Url.Action("ProductCategory", "Category")">Sản phẩm theo danh sách</a>
+                                        
                                         <a href="@Url.Action("ProductCategoryList", "Category",null)">Sản phẩm dạng lưới</a>
                                         <a href="@Url.Action("Index", "Cart")">Giỏ hàng</a>
                                         @*<a href="@Url.Action("Detail", "Product", new { Id = item.Id },null)">Product detail</a>*@
@@ -185,17 +183,7 @@
                                         <a href="@Url.Action("Login", "Home")">Đăng Nhập</a>
                                         <a href="@Url.Action("Register", "Home")">Đăng Ký</a>
                                     </div>
-                                    <div class="col-6">
-                                        <a href="page-profile-main.html">Profile main</a>
-                                        <a href="page-profile-orders.html">Profile orders</a>
-                                        <a href="page-profile-seller.html">Profile seller</a>
-                                        <a href="page-profile-wishlist.html">Profile wishlist</a>
-                                        <a href="page-profile-setting.html">Profile setting</a>
-                                        <a href="@Url.Action("Address", "Address")">Profile address</a>
-                                        <a href="rtl-page-index-1.html">RTL home page</a>
-                                        <a href="@Url.Action("Components", "Components")" target="_blank">More components</a>
-                                    </div>
-                                </nav> <!--  row end .// -->
+                               
                             </div> <!--  dropdown-menu dropdown-large end.// -->
                         </li>
                         <li class="nav-item">
@@ -219,12 +207,12 @@
                             <a class="nav-link" href="#">Ngôn ngữ</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com" data-toggle="dropdown">English</a>
+                            <a class="nav-link dropdown-toggle" href="http://example.com" data-toggle="dropdown">Tiếng Anh</a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">Russian</a>
-                                <a class="dropdown-item" href="#">French</a>
-                                <a class="dropdown-item" href="#">Spanish</a>
-                                <a class="dropdown-item" href="#">Chinese</a>
+                                <a class="dropdown-item" href="#">Tiếng Nga</a>
+                                <a class="dropdown-item" href="#">Tiếng Pháp</a>
+                                <a class="dropdown-item" href="#">Tiếng Tây Ban Nha</a>
+                                <a class="dropdown-item" href="#">Tiếng Trung Quốc</a>
                             </div>
                         </li>
                     </ul>
@@ -241,7 +229,7 @@
             <section class="footer-top padding-y-lg text-white">
                 <div class="row">
                     <aside class="col-md col-6">
-                        <h6 class="title">Thương Hiệu</h6>
+                        <h6 class="title">THƯƠNG HIỆU</h6>
                         <ul class="list-unstyled">
                             <li><a href="https://localhost:44357/Brand/ProductBrand/3">NXB Giáo Dục</a></li>
                             <li><a href="https://localhost:44357/Brand/ProductBrand/1">Nhã Nam</a></li>
@@ -250,36 +238,44 @@
                         </ul>
                     </aside>
                     <aside class="col-md col-6">
-                        <h6 class="title">Công ty</h6>
+                        <h6 class="title">CÔNG TY</h6>
                         <ul class="list-unstyled">
                             <li> <a href="@Url.Action("Starter", "Starter")">Về chúng tôi</a></li>
-                            <li> <a href="#">Career</a></li>
-                            <li> <a href="#">Find a store</a></li>
+    
                             <li> <a href="@Url.Action("Content", "Content")">Chính sách bán hàng</a></li>
-                            <li> <a href="#">Sitemap</a></li>
+                            
                         </ul>
                     </aside>
                     <aside class="col-md col-6">
-                        <h6 class="title">Trợ giúp</h6>
+                        <h6 class="title">TẢI ỨNG DỤNG BOOKSTORE NGAY THÔI</h6>
                         <ul class="list-unstyled">
-                            <li> <a href="#">Contact us</a></li>
-                            <li> <a href="#">Money refund</a></li>
-                            <li> <a href="#">Order status</a></li>
-                            <li> <a href="#">Shipping info</a></li>
-                            <li> <a href="#">Open dispute</a></li>
+                            <li>
+                                <img src="~/Content/images/misc/appstore.png" width="50%" />
+                            </li>
+                            <li>
+                                <img src="~/Content/images/misc/playmarket.png" width="50%"/>
+                            </li>                            
                         </ul>
                     </aside>
                     <aside class="col-md col-6">
-                        <h6 class="title">Account</h6>
+                        <h6 class="title">THANH TOÁN</h6>
                         <ul class="list-unstyled">
-                            <li> <a href="#"> User Login </a></li>
-                            <li> <a href="#"> User register </a></li>
-                            <li> <a href="#"> Account Setting </a></li>
-                            <li> <a href="#"> My Orders </a></li>
+                            <li>
+                                <img src="~/Content/images/icons/pay-visa-el.png" />
+                            </li>
+                            <li>
+                                <img src="~/Content/images/icons/pay-visa.png" />
+                            </li>
+                            <li>
+                                <img src="~/Content/images/icons/pay-mastercard.png" />
+                            </li>
+                            <li>
+                                <img src="~/Content/images/icons/pay-bank.png" />
+                            </li>
                         </ul>
                     </aside>
                     <aside class="col-md">
-                        <h6 class="title">Social</h6>
+                        <h6 class="title">THEO DÕI CHÚNG TÔI TRÊN</h6>
                         <ul class="list-unstyled">
                             <li><a href="https://www.facebook.com/profile.php?id=100032227087948"> <i class="fab fa-facebook"></i> Facebook </a></li>
                             <li><a href="https://twitter.com/?lang=en"> <i class="fab fa-twitter"></i> Twitter </a></li>
@@ -292,8 +288,8 @@
 
             <section class="footer-bottom text-center">
 
-                <p class="text-white">Privacy Policy - Terms of Use - User Information Legal Enquiry Guide</p>
-                <p class="text-muted"> &copy 2019 Company name, All rights reserved </p>
+                
+                <p class="text-muted"> &copy 2022 BookStore. Tất cả các quyền được bảo lưu </p>
                 <br>
             </section>
         </div><!-- //container -->
@@ -302,18 +298,5 @@
 
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
-
-    @*@section scripts{
-
-            <script>
-                //sự kiện click của button tìm kiếm
-                $('#btnSearch').click(function (){
-                    let search = $('#txtSearch').val();
-                    alert(search);
-                }
-            </script>
-
-
-        }*@
 </body>
 </html>

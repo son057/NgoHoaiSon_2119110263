@@ -5,41 +5,59 @@
 
 <h2>THANH TOÁN</h2>
 
+
+@{decimal tongtien = 0;
+}
 <div class="content">
     <div class="section group">
 
         @if (Model != null)
         {
-            <div class="row">
-                <table class="table">
-                    <thead>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Mã SP</td>
+                        <td>Tên SP</td>
+                        <td>Số lượng</td>
+                        <td>Đơn giá</td>
+                        <td>Thành tiền</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <td>Mã SP</td>
-                            <td>Tên SP</td>
-                            <td>Số lượng</td>
-                            <td>Đơn giá</td>
-                            <td>Thành tiền</td>
+                            <td>@item.C2119110263_Product.Id</td>
+                            <td>@item.C2119110263_Product.Name</td>
+                            @*<td><img src="~/Content/images/items/@item.Avatar" /></td>*@
+                            <td><input type="number" class="txtQuantity" data-id="@item.C2119110263_Product.Id" value="@item.Quantity" /></td>
+                            <td>@item.C2119110263_Product.Price</td>
+                            <td>@(Convert.ToDecimal(item.C2119110263_Product.PriceDiscount * item.Quantity))</td>
 
                         </tr>
-                    </thead>
-                    <tbody>
-
-                        @foreach (var item in Model)
+                    }
+                    @if (Model != null)
+                    {
+                        foreach (var i in Model)
                         {
-                            <tr>
-                                <td>@item.C2119110263_Product.Id</td>
-                                <td>@item.C2119110263_Product.Name</td>
-                                @*<td><img src="~/Content/images/items/@item.Avatar" /></td>*@
-                                <td><input type="number" class="txtQuantity" data-id="@item.C2119110263_Product.Id" value="@item.Quantity" /></td>
-                                <td>@item.C2119110263_Product.Price</td>
-                                <td>@(Convert.ToDecimal(item.C2119110263_Product.Price * item.Quantity))</td>
 
-                            </tr>
+                            tongtien += (Convert.ToDecimal(i.C2119110263_Product.PriceDiscount * i.Quantity));
                         }
 
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+
+            </table>
+            
+            <dl class="dlist-align" style="padding-left: 1200px">
+                <dt>Tổng Tiền:</dt>
+                <dd class="text-right  h5"><strong>@(Convert.ToDecimal(tongtien).ToString("#,##0"))</strong></dd>
+
+            </dl>
+        </div>
 
 
             <div style="margin: 10px" class="row">

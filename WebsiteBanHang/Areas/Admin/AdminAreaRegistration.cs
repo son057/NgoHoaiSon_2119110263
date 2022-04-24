@@ -15,10 +15,19 @@ namespace WebsiteBanHang.Areas.Admin
         public override void RegisterArea(AreaRegistrationContext context) 
         {
 
+            
+
             context.MapRoute(
                "page",
                "dashboard/tin-tuc",
                new { controller = "Page", action = "Index", id = UrlParameter.Optional },
+               new[] { "WebSiteBanHang.Areas.Admin.Controllers" }
+           );
+
+            context.MapRoute(
+               "addpage",
+               "dashboard/tin-tuc/them-tin-tuc",
+               new { controller = "Page", action = "Create", id = UrlParameter.Optional },
                new[] { "WebSiteBanHang.Areas.Admin.Controllers" }
            );
 
@@ -53,6 +62,13 @@ namespace WebsiteBanHang.Areas.Admin
                new[] { "WebSiteBanHang.Areas.Admin.Controllers" }
            );
 
+            context.MapRoute(
+               "themdanhmuc",
+               "dashboard/danh-muc/them-danh-muc",
+               new { controller = "Category", action = "Create", id = UrlParameter.Optional },
+               new[] { "WebSiteBanHang.Areas.Admin.Controllers" }
+           );
+
 
             context.MapRoute(
                 "categoryDetails",
@@ -79,6 +95,13 @@ namespace WebsiteBanHang.Areas.Admin
                 "brand",
                 "dashboard/thuong-hieu",
                 new { controller = "Brand", action = "Index", id = UrlParameter.Optional },
+                new[] { "WebSiteBanHang.Areas.Admin.Controllers" }
+            );
+
+            context.MapRoute(
+                "addbrand",
+                "dashboard/thuong-hieu/them-thuong-hieu",
+                new { controller = "Brand", action = "Create", id = UrlParameter.Optional },
                 new[] { "WebSiteBanHang.Areas.Admin.Controllers" }
             );
 
@@ -114,6 +137,12 @@ namespace WebsiteBanHang.Areas.Admin
                 "productDetails",
                 "dashboard/san-pham/chi-tiet/{Slug}-{Id}",
                 new { controller = "Product", action = "Details", id = UrlParameter.Optional },
+                new[] { "WebSiteBanHang.Areas.Admin.Controllers" }
+            );
+            context.MapRoute(
+                "productadd",
+                "dashboard/san-pham/them-san-pham",
+                new { controller = "Product", action = "Create", id = UrlParameter.Optional },
                 new[] { "WebSiteBanHang.Areas.Admin.Controllers" }
             );
 
