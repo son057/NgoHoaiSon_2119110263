@@ -149,13 +149,14 @@
                     <div class="card-body">
                         <div class="tab-content p-0">
                             <!-- Morris chart - Sales -->
-                            <div class="chart tab-pane active" id="revenue-chart"
-                                 style="position: relative; height: 300px;">
-                                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                            </div>
-                            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                            </div>
+                            <figure class="highcharts-figure">
+                                <div id="container"></div>
+                                @*<p class="highcharts-description">
+                                    This chart shows how data labels can be added to the data series. This
+                                    can increase readability and comprehension for small datasets.
+                                </p>*@
+                            </figure>
+                           
                         </div>
                     </div><!-- /.card-body -->
                 </div>
@@ -634,3 +635,51 @@
 </section>
 <!-- /.content -->
 <!-- /.content-wrapper -->
+
+<script>
+
+    $(document).ready(function () {
+        $.getJSON("/HomeAdmin/GetData", function (data) {
+            var Names = []
+            var Qts = []
+            for (var i = 0; i < data.length; i++) {
+                Names.push(data[i].name);
+                Qts.push(data[i].count);
+            }
+
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Thống kê số lượng mua hàng theo Id sản phẩm'
+                },
+                subtitle: {
+                    text: 'BookStore'
+                },
+                xAxis: {
+                    categories: Names
+                },
+                yAxis: {
+                    title: {
+                        text: 'Số lượng'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    name: 'Trend',
+                    data: Qts
+                }]
+            });
+        });
+    });
+
+    
+</script>

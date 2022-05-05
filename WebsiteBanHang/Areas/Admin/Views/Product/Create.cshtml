@@ -5,11 +5,26 @@
 }
 
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+@*<script src="~/Scripts/ckfinder/jquery.js"></script>
+<script src="~/Scripts/ckfinder/ckfinder.js"></script>*@
 
-@using (Html.BeginForm("Create","Product",FormMethod.Post, new { enctype = "multipart/form-data" }))
+@*@section jsFooter{
+        <script>
+            $('#btnSelectImage').on('click', function () {
+                var finder = new CKFinder();
+                finder.selectActionFunction(function (url) {
+                    $('#txtImage').val(url);
+                });
+                finder.popup();
+            })
+        </script>
+    }*@
+
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Thêm sản phẩm</h4>
         <hr />
@@ -25,7 +40,12 @@
         <div class="form-group">
 
             @Html.LabelFor(model => model.Avatar, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.TextBoxFor(model => model.Avatar, new { htmlAttributes = new { @class = "form-control", @id = "txtImage" } })
+                <a id="btnSelectImage" href="#">Chọn ảnh</a>
+                @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })*@
             <div class="col-md-10">
+                @*<input type="text" class="form-control" id="m_image" placeholder="Hình ảnh"/>
+                &nbsp;<a id="btnSelectImage" href="#">Chọn ảnh</a>*@
                 <input type="file" name="ImageUpload" />
             </div>
 
@@ -55,7 +75,7 @@
             <div class="col-md-10">
 
 
-                @Html.TextAreaFor(model => model.FullDes, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.TextAreaFor(model => model.FullDes, new { htmlAttributes = new { @class = "form-control" } })
                 <script type="text/javascript" lang="javascript">
                     CKEDITOR.replace("FullDes");
                 </script>
@@ -102,6 +122,18 @@
         </div>
     </div>
 }
+
+@*<script>
+    $('#btnSelectImage').on('click', function (e) {
+        e.preventDefault();
+        var finder = new CKFinder();
+        finder.selectActionFunction = function (url) {
+            $(('#m_image')).val(url);
+        };
+        finder.popup();
+    }
+    )
+</script>*@
 
 <div>
     @Html.ActionLink("Back to List", "Index")

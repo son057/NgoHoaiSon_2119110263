@@ -11,7 +11,11 @@ using PagedList;
 using PagedList.Mvc;
 using WebsiteBanHang.Context;
 using ClosedXML.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
+using WebsiteBanHang.Models;
 using WebsiteBanHang.Library;
+
+
 
 namespace WebsiteBanHang.Areas.Admin.Controllers
 {
@@ -20,19 +24,19 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         WebsiteBanHangEntities2 objWebsiteBanHangEntities1 = new WebsiteBanHangEntities2();
 
         // GET: Admin/Product
-        public ActionResult Index(string currentFilter, string SearchString, int? page,string sortOrder)
+        public ActionResult Index(string currentFilter, string SearchString, int? page, string sortOrder)
         {
             ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "Price_desc" : "Price";
             ViewBag.PriceDiscountSortParm = sortOrder == "PriceDiscount" ? "PriceDiscount_desc" : "PriceDiscount";
-            
+
 
 
             var emp = from e in objWebsiteBanHangEntities1.C2119110263_Product select e;
-            
+
 
             var lstProduct = new List<C2119110263_Product>();
-            if (SearchString !=null)
+            if (SearchString != null)
             {
                 page = 1;
             }
@@ -49,7 +53,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             else
             {
                 //lấy all sản phẩm trong bảng product
-                emp = objWebsiteBanHangEntities1.C2119110263_Product.Where(e=> e.Deleted == false);
+                emp = objWebsiteBanHangEntities1.C2119110263_Product.Where(e => e.Deleted == false);
 
             }
             ViewBag.CurrentFilter = SearchString;
@@ -86,6 +90,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
         {
 
             this.LoadData();
+            Session["UserName"] = "admin";
             return View();
         }
         [ValidateInput(false)]
@@ -120,7 +125,7 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
                 }
             }
             return View(objProduct);
-            
+
         }
         [HttpGet]
         public ActionResult Details(int id)
@@ -284,9 +289,9 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             var emps = from emp in objWebsiteBanHangEntities1.C2119110263_Product.ToList() select emp;
             foreach (var emp in emps)
             {
-                dt.Rows.Add(emp.Name,emp.Avatar,emp.CategoryId,emp.ShortDes,emp.FullDes,emp.Price,emp.PriceDiscount,emp.TypeId,emp.Slug,emp.BrandId,emp.Deleted,emp.ShowOnHomePage,emp.DisplayOrder,emp.CreatedOnUtc,emp.UpdatedOnUtc);
+                dt.Rows.Add(emp.Name, emp.Avatar, emp.CategoryId, emp.ShortDes, emp.FullDes, emp.Price, emp.PriceDiscount, emp.TypeId, emp.Slug, emp.BrandId, emp.Deleted, emp.ShowOnHomePage, emp.DisplayOrder, emp.CreatedOnUtc, emp.UpdatedOnUtc);
             }
-            using(XLWorkbook wb = new XLWorkbook())
+            using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dt);
                 using (MemoryStream stream = new MemoryStream())
@@ -294,7 +299,63 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
                     wb.SaveAs(stream);
                     return File(stream.ToArray(), "application/vnd.openxmlformat-officedocument.spreadsheetml.sheet", "Grid.xlsx");
                 };
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Import(HttpPostedFileBase excelfile)
+        {
+            if (excelfile == null || excelfile.ContentLength == 0)
+            {
+                ViewBag.Error = "Please select a excel file<br>";
+                return View("Index");
+            }
+            else
+            {
+                if (excelfile.FileName.EndsWith("xls") || excelfile.FileName.EndsWith("xlsx") )
+                {
+                    string path = Server.MapPath("~/Content/" + excelfile.FileName);
+                    if (System.IO.File.Exists(path))
+                        System.IO.File.Delete(path);
+                    excelfile.SaveAs(path);
+                    // Read data from excel file
+                    Excel.Application application = new Excel.Application();
+                    Excel.Workbook workbook = application.Workbooks.Open(path);
+                    Excel.Worksheet worksheet = workbook.ActiveSheet;
+                    Excel.Range range = worksheet.UsedRange;
+                    List<C2119110263_Product> listProducts = new List<C2119110263_Product>();
+                    for(int row = 3; row <= range.Rows.Count; row++)
+                    {
+                        C2119110263_Product p = new C2119110263_Product();
+                        
+                        p.Name = ((Excel.Range)range.Cells[row, 1]).Text;
+                        p.Avatar = ((Excel.Range)range.Cells[row, 2]).Text;
+                        p.CategoryId = int.Parse(((Excel.Range)range.Cells[row, 3]).Text);
+                        p.ShortDes = ((Excel.Range)range.Cells[row, 4]).Text;
+                        p.FullDes = ((Excel.Range)range.Cells[row, 5]).Text;
+                        p.Price = float.Parse(((Excel.Range)range.Cells[row, 6]).Text);
+                        p.PriceDiscount = float.Parse(((Excel.Range)range.Cells[row, 7]).Text);
+                        p.TypeId = int.Parse(((Excel.Range)range.Cells[row, 8]).Text);
+                        p.Slug = ((Excel.Range)range.Cells[row, 9]).Text;
+                        p.BrandId = int.Parse(((Excel.Range)range.Cells[row, 10]).Text);
+                        p.Deleted = ((Excel.Range)range.Cells[row, 11]).Text;
+                        p.ShowOnHomePage = ((Excel.Range)range.Cells[row, 12]).Text;
+                        p.DisplayOrder = int.Parse(((Excel.Range)range.Cells[row, 13]).Text);
+                        p.CreatedOnUtc = ((Excel.Range)range.Cells[row, 14]).Text;
+                        p.UpdatedOnUtc = ((Excel.Range)range.Cells[row, 15]).Text;
+                        listProducts.Add(p);
+                        
+                    }
+                    ViewBag.ListProducts = listProducts;
+                    return View();
+                }    
+                else
+                {
+                    ViewBag.Error = "File type is incorrect<br>";
+                    return View("Index");
+                }    
             }    
+            
         }
     }
 }

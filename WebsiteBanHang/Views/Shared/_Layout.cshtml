@@ -75,7 +75,7 @@
                             <div class="input-group w-100">
                                 <select class="custom-select border-right" name="category_name">
                                     <option value="">Theo tên sản phẩm</option>
-                                    
+
                                 </select>
                                 @*<input type="text" class="form-control" placeholder="Search">*@
 
@@ -89,13 +89,13 @@
                                 {
 
                                     @*<div class="input-group">
-                                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" id="txtSearch" />
-                                        <button type="button" class="btn btn-outline-primary" id="btnSearch">search</button>
-                                    </div>*@
+                                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" id="txtSearch" />
+                                            <button type="button" class="btn btn-outline-primary" id="btnSearch">search</button>
+                                        </div>*@
                                     <div class="form-group form-inline">
-                                            @Html.TextBox("SearchString", "", new { @class = "form-control" })
-                                            <input type="submit" class="btn btn-default" value="Tìm kiếm" />
-                                        </div>
+                                        @Html.TextBox("SearchString", "", new { @class = "form-control" })
+                                        <input type="submit" class="btn btn-default" value="Tìm kiếm" />
+                                    </div>
                                 }
 
                             </div>
@@ -113,7 +113,7 @@
                                     {
                                         <a href="~/Admin/HomeAdmin/Login">Admin</a>
                                         <a href="~/Home/Logout">
-                                            <i style ="font-size: 3em" class="fa-solid fa-right-from-bracket"></i>
+                                            <i style="font-size: 3em" class="fa-solid fa-right-from-bracket"></i>
                                         </a> }
                                     else
                                     {
@@ -136,13 +136,13 @@
                                     </a>
                                 </div>*@
                             @*<div class="widget-header mr-3">
-                                <a href="#" class="widget-view">
-                                    <div class="icon-area">
-                                        <i class="fa fa-store"></i>
-                                    </div>
-                                    <small class="text"> Orders </small>
-                                </a>
-                            </div>*@
+                                    <a href="#" class="widget-view">
+                                        <div class="icon-area">
+                                            <i class="fa fa-store"></i>
+                                        </div>
+                                        <small class="text"> Orders </small>
+                                    </a>
+                                </div>*@
                             <div class="widget-header">
                                 <a href="@Url.Action("Index","Cart")" class="widget-view">
                                     <div class="icon-area">
@@ -171,19 +171,19 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-bars text-muted mr-2"></i> </a>
                             <div class="dropdown-menu dropdown-large">
-                                
-                                    <div class="col-6">
-                                        <a href="@Url.Action("Index", "Home")">Trang Chủ</a>
-                                        <a href="@Url.Action("Category", "Category")">Tất cả các loại sản phẩm</a>
-                                        
-                                        <a href="@Url.Action("ProductCategoryList", "Category",null)">Sản phẩm dạng lưới</a>
-                                        <a href="@Url.Action("Index", "Cart")">Giỏ hàng</a>
-                                        @*<a href="@Url.Action("Detail", "Product", new { Id = item.Id },null)">Product detail</a>*@
-                                        <a href="@Url.Action("Content", "Content")">Trang chính sách bán hàng</a>
-                                        <a href="@Url.Action("Login", "Home")">Đăng Nhập</a>
-                                        <a href="@Url.Action("Register", "Home")">Đăng Ký</a>
-                                    </div>
-                               
+
+                                <div class="col-6">
+                                    <a href="@Url.Action("Index", "Home")">Trang Chủ</a>
+                                    <a href="@Url.Action("Category", "Category")">Tất cả các loại sản phẩm</a>
+
+                                    <a href="@Url.Action("ProductCategoryList", "Category",null)">Sản phẩm dạng lưới</a>
+                                    <a href="@Url.Action("Index", "Cart")">Giỏ hàng</a>
+                                    @*<a href="@Url.Action("Detail", "Product", new { Id = item.Id },null)">Product detail</a>*@
+                                    <a href="@Url.Action("Content", "Content")">Trang chính sách bán hàng</a>
+                                    <a href="@Url.Action("Login", "Home")">Đăng Nhập</a>
+                                    <a href="@Url.Action("Register", "Home")">Đăng Ký</a>
+                                </div>
+
                             </div> <!--  dropdown-menu dropdown-large end.// -->
                         </li>
                         <li class="nav-item">
@@ -241,9 +241,9 @@
                         <h6 class="title">CÔNG TY</h6>
                         <ul class="list-unstyled">
                             <li> <a href="@Url.Action("Starter", "Starter")">Về chúng tôi</a></li>
-    
+
                             <li> <a href="@Url.Action("Content", "Content")">Chính sách bán hàng</a></li>
-                            
+
                         </ul>
                     </aside>
                     <aside class="col-md col-6">
@@ -253,8 +253,8 @@
                                 <img src="~/Content/images/misc/appstore.png" width="50%" />
                             </li>
                             <li>
-                                <img src="~/Content/images/misc/playmarket.png" width="50%"/>
-                            </li>                            
+                                <img src="~/Content/images/misc/playmarket.png" width="50%" />
+                            </li>
                         </ul>
                     </aside>
                     <aside class="col-md col-6">
@@ -288,7 +288,7 @@
 
             <section class="footer-bottom text-center">
 
-                
+
                 <p class="text-muted"> &copy 2022 BookStore. Tất cả các quyền được bảo lưu </p>
                 <br>
             </section>

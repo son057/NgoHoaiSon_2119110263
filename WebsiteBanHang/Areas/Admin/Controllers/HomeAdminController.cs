@@ -151,6 +151,16 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             double slTV = objwebsiteBanHangEntities1.C2119110263_Users.Count();
             return slTV;
         }
+
+        public ActionResult GetData()
+        {
+            WebsiteBanHangEntities2 context = new WebsiteBanHangEntities2();
+            
+            var query = context.C2119110263_OrderDetail.Include("C2119110263_Product")
+            .GroupBy(p => p.ProductId)
+            .Select(g => new { name = g.Key, count = g.Sum(w => w.Quantity) }).ToList();
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
         
     }
 }

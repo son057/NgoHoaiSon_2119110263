@@ -54,7 +54,7 @@ namespace WebsiteBanHang.Controllers
             return View(objHomeModel);
         }
 
-        private Uri RediredtUri
+        private Uri RedirectUri
         {
             get
             {
@@ -124,7 +124,6 @@ namespace WebsiteBanHang.Controllers
                 }
                 else
                 {
-                    
                     ViewBag.message = "Login failed";
                     return RedirectToAction("Login");
                 }
@@ -156,14 +155,14 @@ namespace WebsiteBanHang.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Facebook()
+        public ActionResult LoginFacebook()
         {
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
                 client_id = ConfigurationManager.AppSettings["FbAppId"],
                 client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
-                redirect_uri = RediredtUri.AbsoluteUri,
+                redirect_uri = RedirectUri.AbsoluteUri,
                 response_type = "code",
                 scope = "email",
             });
@@ -174,23 +173,23 @@ namespace WebsiteBanHang.Controllers
         public ActionResult FacebookCallback(string code)
         {
             var fb = new FacebookClient();
-            dynamic result = fb.Post("oauth/access_token", new
-            {
-                client_id = ConfigurationManager.AppSettings["FbAppId"],
-                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
-                redirect_uri = RediredtUri.AbsoluteUri,
-                code = code
-            });
+            //dynamic result = fb.Post("oauth/access_token", new
+            //{
+            //    client_id = ConfigurationManager.AppSettings["FbAppId"],
+            //    client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+            //    redirect_uri = RedirectUri.AbsoluteUri,
+            //    code = code
+            //});
 
 
-            var accessToken = result.access_token;
-            Session["AccessToken"] = accessToken;
-            fb.AccessToken = accessToken;
-            dynamic me = fb.Get("me?fields=link,first_name,currency,last_name,email,gender,locale,timezone,verified,picture,age_range");
-            string email = me.email;
-            string lastname = me.last_name;
-            string picture = me.picture.data.url;
-            FormsAuthentication.SetAuthCookie(email, false);
+            //var accessToken = accessToken;
+            //Session["AccessToken"] = accessToken;
+            //fb.AccessToken = accessToken;
+            //dynamic me = fb.Get("me?fields=link,first_name,currency,last_name,email,gender,locale,timezone,verified,picture,age_range");
+            //string email = me.email;
+            //string lastname = me.last_name;
+            //string picture = me.picture.data.url;
+            //FormsAuthentication.SetAuthCookie(email, false);
             //if (!string.IsNullOrEmpty(accessToken))
             //{
             //    fb.AccessToken = accessToken;
@@ -220,7 +219,7 @@ namespace WebsiteBanHang.Controllers
             //    //    Session.Add(CommonConstants.USER_SESSION, userSession);
             //    //}
             //}
-            return RedirectToAction("Index","Home");
+            return Redirect("Index");
         }
 
         [NonAction]
