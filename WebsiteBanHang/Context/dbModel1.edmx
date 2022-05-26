@@ -43,6 +43,45 @@
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="Contact" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="2119110263_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="2119110263_CountryMaster">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Logo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="2119110263_Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="TitleOfCourtesy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="ReportsTo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="2119110263_Locations">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lat" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Long" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="2119110263_Order">
           <Key>
             <PropertyRef Name="Id" />
@@ -125,6 +164,10 @@
           <EntitySet Name="2119110263_Brand" EntityType="Self.2119110263_Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_Category" EntityType="Self.2119110263_Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_Contact" EntityType="Self.2119110263_Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="2119110263_Country" EntityType="Self.2119110263_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="2119110263_CountryMaster" EntityType="Self.2119110263_CountryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="2119110263_Employees" EntityType="Self.2119110263_Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="2119110263_Locations" EntityType="Self.2119110263_Locations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_Order" EntityType="Self.2119110263_Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_OrderDetail" EntityType="Self.2119110263_OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="2119110263_Page" EntityType="Self.2119110263_Page" Schema="dbo" store:Type="Tables" />
@@ -223,6 +266,14 @@
           <EntitySet Name="C2119110263_OrderDetail" EntityType="WebsiteBanHangModel1.C2119110263_OrderDetail" />
           <EntitySet Name="C2119110263_Page" EntityType="WebsiteBanHangModel1.C2119110263_Page" />
           <EntitySet Name="C2119110263_Contact" EntityType="WebsiteBanHangModel1.C2119110263_Contact" />
+          <FunctionImport Name="GetDirection" ReturnType="Collection(WebsiteBanHangModel1.GetDirection_Result)">
+            <Parameter Name="LocFrom" Mode="In" Type="Int32" />
+            <Parameter Name="LocTo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="C2119110263_Locations" EntityType="WebsiteBanHangModel1.C2119110263_Locations" />
+          <EntitySet Name="C2119110263_CountryMaster" EntityType="WebsiteBanHangModel1.C2119110263_CountryMaster" />
+          <EntitySet Name="C2119110263_Employees" EntityType="WebsiteBanHangModel1.C2119110263_Employees" />
+          <EntitySet Name="C2119110263_Country" EntityType="WebsiteBanHangModel1.C2119110263_Country" />
         </EntityContainer>
         <EntityType Name="C2119110263_OrderDetail">
           <Key>
@@ -260,6 +311,49 @@
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="GetDirection_Result">
+          <Property Type="String" Name="FromLoc" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ToLoc" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="C2119110263_Locations">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Lat" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Long" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="C2119110263_CountryMaster">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="C2119110263_Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TitleOfCourtesy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HomePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReportsTo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C2119110263_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -388,6 +482,49 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C2119110263_Locations">
+            <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Locations">
+              <MappingFragment StoreEntitySet="2119110263_Locations">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C2119110263_CountryMaster">
+            <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_CountryMaster">
+              <MappingFragment StoreEntitySet="2119110263_CountryMaster">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C2119110263_Employees">
+            <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Employees">
+              <MappingFragment StoreEntitySet="2119110263_Employees">
+                <ScalarProperty Name="ReportsTo" ColumnName="ReportsTo" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="TitleOfCourtesy" ColumnName="TitleOfCourtesy" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C2119110263_Country">
+            <EntityTypeMapping TypeName="WebsiteBanHangModel1.C2119110263_Country">
+              <MappingFragment StoreEntitySet="2119110263_Country">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

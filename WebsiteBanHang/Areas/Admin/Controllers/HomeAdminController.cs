@@ -161,6 +161,11 @@ namespace WebsiteBanHang.Areas.Admin.Controllers
             .Select(g => new { name = g.Key, count = g.Sum(w => w.Quantity) }).ToList();
             return Json(query, JsonRequestBehavior.AllowGet);
         }
-        
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
     }
 }

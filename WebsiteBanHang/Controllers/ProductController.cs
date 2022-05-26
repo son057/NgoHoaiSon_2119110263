@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebsiteBanHang.Context;
 using PagedList;
+using WebsiteBanHang.Models;
 
 namespace WebsiteBanHang.Controllers
 {
@@ -50,6 +51,18 @@ namespace WebsiteBanHang.Controllers
             lstProduct = lstProduct.OrderByDescending(n => n.Id).ToList();
             lstProduct = objWebsiteBanHangEntities1.C2119110263_Product.ToList();
             return View(lstProduct.ToPagedList(pageNumber, pageSize));
+        }
+
+
+        public JsonResult GetSearchValue(string search)
+        {
+            WebsiteBanHangEntities2 db = new WebsiteBanHangEntities2();
+            List<CountryModel> allsearch = db.C2119110263_Country.Where(x => x.CountryName.Contains(search)).Select(x => new CountryModel
+            {
+                CountryId = x.CountryId,
+                CountryName = x.CountryName
+            }).ToList();
+            return new JsonResult { Data = allsearch, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }
 }

@@ -12,6 +12,8 @@ namespace WebsiteBanHang.Context
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class WebsiteBanHangEntities2 : DbContext
     {
@@ -33,5 +35,22 @@ namespace WebsiteBanHang.Context
         public virtual DbSet<C2119110263_OrderDetail> C2119110263_OrderDetail { get; set; }
         public virtual DbSet<C2119110263_Page> C2119110263_Page { get; set; }
         public virtual DbSet<C2119110263_Contact> C2119110263_Contact { get; set; }
+        public virtual DbSet<C2119110263_Locations> C2119110263_Locations { get; set; }
+        public virtual DbSet<C2119110263_CountryMaster> C2119110263_CountryMaster { get; set; }
+        public virtual DbSet<C2119110263_Employees> C2119110263_Employees { get; set; }
+        public virtual DbSet<C2119110263_Country> C2119110263_Country { get; set; }
+    
+        public virtual ObjectResult<GetDirection_Result> GetDirection(Nullable<int> locFrom, Nullable<int> locTo)
+        {
+            var locFromParameter = locFrom.HasValue ?
+                new ObjectParameter("LocFrom", locFrom) :
+                new ObjectParameter("LocFrom", typeof(int));
+    
+            var locToParameter = locTo.HasValue ?
+                new ObjectParameter("LocTo", locTo) :
+                new ObjectParameter("LocTo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDirection_Result>("GetDirection", locFromParameter, locToParameter);
+        }
     }
 }

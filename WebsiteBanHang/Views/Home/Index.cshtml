@@ -322,6 +322,23 @@
             </div> <!-- col-md-6.// -->
         </div>
 
+        @*Người đang online <strong id="counter"></strong>*@
+
+        <script src="@Url.Content("~/Scripts/jquery.signalR-2.4.3.js")"></script>
+        <script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")"></script>
+        @*<script src="@Url.Content("~/signalr/hubs")"></script>*@
+        <script>
+            $(function () {
+                var counterHub = $.connection.counterHub;
+                $.connection.hub.start().done(function () {
+
+                });
+
+                counterHub.client.UpdateCount = function (count) {
+                    $("#counter").text(count);
+                }
+            });
+        </script>
     </div>
 </section>
 <!-- ========================= SECTION SUBSCRIBE END// ========================= -->
